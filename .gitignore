@@ -13,3 +13,7 @@ webapp/.idea/workspace.xml
 learningApp/.mvn/wrapper/maven-wrapper.jar
 webapp/package-lock.json
 learningApp/.mvn/wrapper/maven-wrapper.jar
+.project
+.settings/.jsdtscope
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
