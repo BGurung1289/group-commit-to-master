@@ -19,6 +19,7 @@ import qa.seanqagroup.learningApp.repository.SectionRepository;
 
 @RestController
 @RequestMapping("/module")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ModuleController {
 	
 	@Autowired
@@ -38,4 +39,8 @@ public class ModuleController {
 		return sections;
 	}
 
+	@PostMapping("/add")
+	public void createModule(Module module) {
+		moduleRepo.save(module);
+	}
 }

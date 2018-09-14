@@ -17,6 +17,7 @@ import qa.seanqagroup.learningApp.repository.ModuleRepository;
 
 @RestController
 @RequestMapping("/course")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CourseController {
 	
 	@Autowired
@@ -34,6 +35,12 @@ public class CourseController {
 		Page<Module> modules = moduleRepo.getModulesByCourse(course, pageable);
 		
 		return modules;		
+	}
+	
+	@PostMapping("/add")
+	public void createCourse(Course course, @RequestParam("madeByTrainerId") Long madeByTrainerId) {
+		course.setTrainerId(madeByTrainerId);
+		courseRepo.save(course);
 	}
 
 
