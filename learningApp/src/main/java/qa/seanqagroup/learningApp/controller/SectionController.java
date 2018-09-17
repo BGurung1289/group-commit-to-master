@@ -62,4 +62,10 @@ public class SectionController {
 		sectionHasVideo.setVideoId(videoid);
 		shvRepository.save(sectionHasVideo);
 	}
+
+	@GetMapping("/searchSection")
+	public String getCourseIdName() {
+		Gson gson = new Gson();
+		return gson.toJson(sectionRepo.findAll());
+	}
 }
