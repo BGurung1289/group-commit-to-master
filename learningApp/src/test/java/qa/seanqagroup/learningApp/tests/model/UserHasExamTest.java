@@ -1,4 +1,4 @@
-package repotest;
+package qa.seanqagroup.learningApp.tests.model;
 
 import static org.junit.Assert.assertTrue;
 
