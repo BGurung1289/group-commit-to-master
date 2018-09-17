@@ -1,4 +1,4 @@
-package qa.seanqagroup.learningApp.tests;
+package qa.seanqagroup.learningApp.tests.model;
 
 public class TQTest {
 

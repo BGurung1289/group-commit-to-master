@@ -10,9 +10,9 @@ import qa.seanqagroup.learningApp.model.Module;
 
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
-	Page<Module> getModulesByCourse(Course course, Pageable pageable);
+	Page<Module> getModulesByCourseId(Long courseId, Pageable pageable);
 	Module getModuleByModuleId(Long moduleId);
 	
-	//Not properly implemented - behovs i Test.jsx - ska mojligen vara i en Testrepo istallet?
-	Test getTestbyModuleId(Long moduleId);
+//	//Not properly implemented - behovs i Test.jsx - ska mojligen vara i en Testrepo istallet?
+//	Test getTestByModuleId(Long moduleId);
 }

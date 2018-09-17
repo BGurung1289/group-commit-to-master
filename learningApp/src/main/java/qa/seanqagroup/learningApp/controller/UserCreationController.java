@@ -2,6 +2,7 @@ package qa.seanqagroup.learningApp.controller;
 
 import javax.validation.Valid;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,7 +41,7 @@ public class UserCreationController {
 	}
 	
 	@PostMapping("/login")
-	public String checkDetails(User user){
+	public String checkDetails(User user) throws JSONException{
 		JSONObject obj = new JSONObject();
 		for (User everyone : userRepo.findAll()) {
 			System.out.println(everyone.getEmail());

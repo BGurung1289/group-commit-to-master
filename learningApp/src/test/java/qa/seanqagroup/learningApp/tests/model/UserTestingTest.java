@@ -1,4 +1,4 @@
-package qa.seanqagroup.learningApp.tests;
+package qa.seanqagroup.learningApp.tests.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

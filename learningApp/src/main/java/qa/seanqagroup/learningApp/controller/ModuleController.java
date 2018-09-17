@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +36,7 @@ public class ModuleController {
 		Module module = moduleRepo.getModuleByModuleId(moduleId);
 		
 		//h'mta samtliga sections som tillh;r modulen
-		List<Section> sections = sectionRepo.getSectionsByModule(module);
+		List<Section> sections = sectionRepo.getSectionsByModuleId(module.getModuleId());
 		
 		return sections;
 	}

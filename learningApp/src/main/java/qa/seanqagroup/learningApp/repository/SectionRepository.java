@@ -14,7 +14,7 @@ import qa.seanqagroup.learningApp.model.Section;
 public interface SectionRepository extends JpaRepository<Section, Long> {
 	//Page<Section> getSectionsByModule(Module module, Pageable pageable);
 
-	List<Section> getSectionsByModule(Module module);
+	List<Section> getSectionsByModuleId(Long moduleId);
 	
 	Section getSectionBySectionId(Long sectionId);
 }

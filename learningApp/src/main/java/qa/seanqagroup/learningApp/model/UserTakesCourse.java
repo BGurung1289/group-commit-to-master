@@ -5,7 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import qa.seanqagroup.learningApp.compositeKey.UserTakesCourseKey;
+import qa.seanqagroup.learningApp.compositekey.UserTakesCourseKey;
+
 
 @Entity
 @Table(name = "user_takes_course")

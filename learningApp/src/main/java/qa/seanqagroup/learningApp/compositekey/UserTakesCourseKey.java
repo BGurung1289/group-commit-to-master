@@ -1,4 +1,4 @@
-package qa.seanqagroup.learningApp.compositeKey;
+package qa.seanqagroup.learningApp.compositekey;
 
 import java.io.Serializable;
 

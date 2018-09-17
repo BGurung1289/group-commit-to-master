@@ -1,4 +1,4 @@
-package qa.seanqagroup.learningApp.tests;
+package qa.seanqagroup.learningApp.tests.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

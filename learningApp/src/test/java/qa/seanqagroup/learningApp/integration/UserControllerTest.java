@@ -1,4 +1,4 @@
-package integration;
+package qa.seanqagroup.learningApp.integration;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
-import qa.seanqagroup.learningApp.controller.UserController;
 import qa.seanqagroup.learningApp.repository.UserRepository;
 
 

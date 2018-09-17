@@ -2,6 +2,7 @@ package qa.seanqagroup.learningApp.controller;
 
 import java.util.ArrayList;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,7 @@ public class VideoController {
 	
 	@GetMapping("/getVideo/{id}")
 	//enters the section id
-	public String getVideos(@PathVariable String id) {
+	public String getVideos(@PathVariable String id) throws JSONException {
 		JSONObject obj = new JSONObject();
 		ArrayList<JSONObject> arr = new ArrayList();
 		ArrayList<Long> vidIds = new ArrayList();
