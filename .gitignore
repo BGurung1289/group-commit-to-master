@@ -17,3 +17,8 @@ learningApp/.mvn/wrapper/maven-wrapper.jar
 .settings/.jsdtscope
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 .settings/org.eclipse.wst.jsdt.ui.superType.name
+.idea/libraries/maven_wrapper.xml
+.idea/libraries/learningApp_0_0_1.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml

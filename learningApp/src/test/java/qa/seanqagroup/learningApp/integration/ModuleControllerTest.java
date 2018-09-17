@@ -1,5 +1,6 @@
 package qa.seanqagroup.learningApp.integration;
 
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.AfterClass;
@@ -19,12 +20,12 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
-import qa.seanqagroup.learningApp.repository.CourseRepository;
+import qa.seanqagroup.learningApp.repository.ModuleRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { LearningAppApplication.class })
 @AutoConfigureMockMvc
-public class CourseControllerTest {
+public class ModuleControllerTest {
 
 	private static ExtentHtmlReporter htmlReporter;
 	private static ExtentReports extent = new ExtentReports();
@@ -34,12 +35,12 @@ public class CourseControllerTest {
 	private MockMvc mvc;
 
 	@Autowired
-	private CourseRepository courseRepository;
-
+	private ModuleRepository moduleRepository;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		htmlReporter = new ExtentHtmlReporter(
-				"C:\\Users\\Admin\\Desktop\\ExtentReports\\CourseControllerTestReport.html");
+				"C:\\Users\\Admin\\Desktop\\ExtentReports\\ModuleControllerTestReport.html");
 		extent.attachReporter(htmlReporter);
 	}
 
@@ -49,16 +50,18 @@ public class CourseControllerTest {
 	}
 
 	@Test
-	public void addCourseTest() throws Exception {
-		test = extent.createTest("CourseController add course");
+	public void addModuleTest() throws Exception {
+		test = extent.createTest("ModuleController add module");
 		try {
-			mvc.perform(MockMvcRequestBuilders.post("/course/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-					.param("courseName", "Learn to control your inner Chi")
-					.param("courseDescription", "We teach you to control chi").param("madeByTrainerId", "1"))
+			mvc.perform(MockMvcRequestBuilders.post("/module/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+					.param("moduleName", "Control Chi(Energy)")
+					.param("moduleDescription", "Think, breath, and control")
+					.param("courseId", "15"))
 					.andExpect(status().isOk());
-			test.pass("Added course to database");
+			test.pass("Added module to database");
 		} catch (AssertionError e) {
-			test.fail("Didn't add course to database");
+			test.fail("Didn't add module to database");
 		}
 	}
+
 }

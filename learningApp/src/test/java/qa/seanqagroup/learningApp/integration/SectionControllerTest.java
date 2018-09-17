@@ -1,5 +1,6 @@
 package qa.seanqagroup.learningApp.integration;
 
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.AfterClass;
@@ -19,27 +20,26 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
-import qa.seanqagroup.learningApp.repository.CourseRepository;
+import qa.seanqagroup.learningApp.repository.SectionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { LearningAppApplication.class })
 @AutoConfigureMockMvc
-public class CourseControllerTest {
+public class SectionControllerTest {
 
 	private static ExtentHtmlReporter htmlReporter;
 	private static ExtentReports extent = new ExtentReports();
-	private ExtentTest test;
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Autowired
-	private CourseRepository courseRepository;
+	private SectionRepository sectionRepository;
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		htmlReporter = new ExtentHtmlReporter(
-				"C:\\Users\\Admin\\Desktop\\ExtentReports\\CourseControllerTestReport.html");
+				"C:\\Users\\Admin\\Desktop\\ExtentReports\\SectionControllerTestReport.html");
 		extent.attachReporter(htmlReporter);
 	}
 
@@ -49,16 +49,31 @@ public class CourseControllerTest {
 	}
 
 	@Test
-	public void addCourseTest() throws Exception {
-		test = extent.createTest("CourseController add course");
+	public void addSectionTest() throws Exception {
+		ExtentTest test = extent.createTest("SectionController add section");
 		try {
-			mvc.perform(MockMvcRequestBuilders.post("/course/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-					.param("courseName", "Learn to control your inner Chi")
-					.param("courseDescription", "We teach you to control chi").param("madeByTrainerId", "1"))
+			mvc.perform(MockMvcRequestBuilders.post("/section/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+					.param("sectionName", "Energy").param("sectionContent", "Think").param("moduleId", "3"))
 					.andExpect(status().isOk());
-			test.pass("Added course to database");
+			test.pass("Added section to database");
 		} catch (AssertionError e) {
-			test.fail("Didn't add course to database");
+			test.fail("Didn't add module to database");
 		}
 	}
+
+	@Test
+	public void addYoutubeTest() throws Exception {
+		ExtentTest test2 = extent.createTest("SectionController add youtube link");
+		try {
+			mvc.perform(
+					MockMvcRequestBuilders.post("/section/youtube").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+							.param("videoUrl", "www.youtube.com").param("sectionid", "1")
+							.param("videoName", "Chi teach you to control your inner chi").param("trainerId", "1"))
+					.andExpect(status().isOk());
+			test2.pass("Added youtube URL to database");
+		} catch (AssertionError e) {
+			test2.fail("Didn't add youtube URL to database");
+		}
+	}
+
 }
