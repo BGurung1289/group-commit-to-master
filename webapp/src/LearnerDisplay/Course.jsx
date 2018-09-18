@@ -2,7 +2,6 @@ import React from 'react';
 import CourseOverview from './CourseOverview';
 import Test from './Test';
 import Section from './Section';
-import {Link} from 'react-router-dom';
 
 let moduleSections = [];
 
@@ -15,7 +14,7 @@ export default class Course extends React.Component {
       course: props.course,
       module: 0,
       section: 0
-    }
+    };
 
     this.updateSection = this.updateSection.bind(this);
   }

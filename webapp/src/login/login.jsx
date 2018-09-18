@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-
 class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const loginData = new FormData(event.target);
 
-        fetch("http://localhost:8080/login", {
+        fetch("http://localhost:8080/ucc/login", {
             method: 'POST',
             body: loginData
         }).then(
@@ -23,7 +22,7 @@ class Login extends Component {
                     sessionStorage.utype = myJson.type;
 
                     //change below address for redirecting
-                    document.location.href = '/login';
+                    document.location.href = '/';
                 } else{
                     document.getElementById("result").innerHTML = "Email does not exist";
                 }

@@ -11,7 +11,9 @@ export default function Header() {
             <p className="w3-padding w3-display-topmiddle">Search bar</p>
 
             <nav className="w3-padding w3-display-topright">
-                <button>Navigation</button>
+                <Link to='/courses'>Courses</Link>
+                <br/>
+                <Link to='/trainerPage'>Trainer</Link>
             </nav>
         </div>
     )
