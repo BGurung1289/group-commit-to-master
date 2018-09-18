@@ -1,6 +1,7 @@
 package qa.seanqagroup.learningApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ public class TrainerManagerController {
 	
 	
 
-	
+	@PreAuthorize("hasE_Type('TRAINERMANGER')")
 	@PostMapping("/register/{id}")
 	public TrainerManager updateToTrainer(@PathVariable(value = "id")Long userId) {
 		User tempUser = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("USER", "ID" , userId));	

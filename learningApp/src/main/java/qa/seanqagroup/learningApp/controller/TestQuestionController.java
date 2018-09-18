@@ -15,15 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.mongodb.util.JSON;
 
-import qa.seanqagroup.learningApp.model.ModuleExam;
-import qa.seanqagroup.learningApp.model.TestQuestionModel;
-import qa.seanqagroup.learningApp.repository.ModuleExamRepo;
 import qa.seanqagroup.learningApp.repository.TestQuestionRepository;
 
 
@@ -37,9 +30,32 @@ public class TestQuestionController {
 @Autowired
 TestQuestionRepository tQRepo;
 
-@Autowired
-ModuleExamRepo mER;
+@PostMapping("/TestQuestionModel")
+public void createTestQuestion(@RequestBody String payload) {
+	try {
+		payload = "{" + payload + "}";
 		
+		JSONObject jsonObj = new JSONObject(payload);
+//		String title = jsonObj.getJSONObject("title")
+		System.out.print(jsonObj);
+//		JSONObject jsonObj = new JSONObject(payload);
+//		System.out.println(jsonObj); 
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+//	return tQRepo.save(tQM);
 }
 
+//@PutMapping("/testQuestion/{id}")
+//public TestQuestionModel updateTestQuestion(@PathVariable(value = "id") Long testId,
+//		@Valid @RequestBody TestQuestionModel tQuestion) {
+//	
+//	TestQuestionModel tQM = tQRepo.findById(testQuestionId).orElseThrow(() -> new ResourceNotFoundException()
+//}
+//
+//String[] eachobject = edit.split("},{");
+//for(String value : eachobject) {
+//System.out.println(value);
 
+}

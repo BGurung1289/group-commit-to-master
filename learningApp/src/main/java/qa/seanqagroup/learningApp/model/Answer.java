@@ -16,42 +16,31 @@ public class Answer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long answerId;
-	
-	private String answerContent;
-	
 	private Long testQuestionId;
 	
-	private boolean isCorrect;
-
-	public Long getAnswerId() {
-		return answerId;
-	}
-
-	public String getAnswerContent() {
-		return answerContent;
-	}
-
-	public void setAnswerContent(String answerContent) {
-		this.answerContent = answerContent;
-	}
+	private String questionContent;
+	
+	private Long testId;
 
 	public Long getTestQuestionId() {
 		return testQuestionId;
 	}
 
-	public void setTestQuestionId(Long testQuestionId) {
-		this.testQuestionId = testQuestionId;
+	public String getQuestionContent() {
+		return questionContent;
 	}
 
-	public boolean isCorrect() {
-		return isCorrect;
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
 	}
 
-	public void setCorrect(boolean isCorrect) {
-		this.isCorrect = isCorrect;
+	public Long getTestId() {
+		return testId;
 	}
 
+	public void setTestId(Long testId) {
+		this.testId = testId;
+	}
 	
 	
 

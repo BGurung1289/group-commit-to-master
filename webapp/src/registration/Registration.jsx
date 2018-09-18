@@ -12,7 +12,7 @@ export default class Registration extends React.Component{
     }
     render(){
         return (
-            <div className="register w3-padding w3-display-middle">
+            <div className="register_page">
                 <h1>Time to Register</h1>
                 <div className="register_form">
                     <form onSubmit={this.handleSubmit}>
@@ -20,7 +20,7 @@ export default class Registration extends React.Component{
                         <input type="text" required placeholder="First Name" /><br/>
                         <input type="text" required placeholder="Last Name" /><br/>
                         <input type="password" required placeholder="Password" /><br />
-                        <input type="submit" value="Submit" />
+                        <input name="" type="submit" value="Submit" />
                     </form>
                 </div>
             </div>

@@ -2,10 +2,10 @@ package qa.seanqagroup.learningApp.controller;
 
 import java.util.List;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,23 +33,17 @@ public class ModuleController {
 	
 	@GetMapping("/{moduleId}/getSections") 
 	public List<Section> getNumberOfSections(@PathVariable(value = "moduleId") Long moduleId) {
-		// h'mta modulidt
-		Module module = moduleRepo.getModuleByModuleId(moduleId);
+				Module module = moduleRepo.getModuleByModuleId(moduleId);
 		
-		//h'mta samtliga sections som tillh;r modulen
+	
 		List<Section> sections = sectionRepo.getSectionsByModuleId(module.getModuleId());
 		
 		return sections;
 	}
-
+	
+	@PreAuthorize("hasE_Type('TRAINER')")
 	@PostMapping("/add")
 	public void createModule(Module module) {
 		moduleRepo.save(module);
-	}
-
-	@GetMapping("/searchModule")
-	public String getCourseIdName() {
-		Gson gson = new Gson();
-		return gson.toJson(moduleRepo.findAll());
 	}
 }

@@ -1,6 +1,7 @@
 package qa.seanqagroup.learningApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class SectionController {
 		return section;
 	}
 	
+	@PreAuthorize("hasE_Type('TRAINER')")
 	@PostMapping("/add")
 	public String createSection(Section section) {
 		sectionRepo.save(section);
@@ -48,7 +50,7 @@ public class SectionController {
 		String store = gson.toJson("{\"sectionid\":\"" + id + "\"}");
 		return store;
 	}
-
+	@PreAuthorize("hasE_Type('TRAINER')")
 	@PostMapping("/youtube")
 	public void addYoutube(Video video, @RequestParam("sectionid") long sectionid) {
 		SectionHasVideo sectionHasVideo = new SectionHasVideo();
@@ -61,11 +63,5 @@ public class SectionController {
 		sectionHasVideo.setSectionId(sectionid);
 		sectionHasVideo.setVideoId(videoid);
 		shvRepository.save(sectionHasVideo);
-	}
-
-	@GetMapping("/searchSection")
-	public String getCourseIdName() {
-		Gson gson = new Gson();
-		return gson.toJson(sectionRepo.findAll());
 	}
 }

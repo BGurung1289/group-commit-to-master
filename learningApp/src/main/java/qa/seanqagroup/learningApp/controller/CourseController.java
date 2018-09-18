@@ -2,7 +2,6 @@ package qa.seanqagroup.learningApp.controller;
 
 import java.util.List;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +18,8 @@ import qa.seanqagroup.learningApp.model.Module;
 import qa.seanqagroup.learningApp.repository.CourseRepository;
 import qa.seanqagroup.learningApp.repository.ModuleRepository;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+
 @RestController
 @RequestMapping("/course")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -29,6 +30,11 @@ public class CourseController {
 	
 	@Autowired
 	private ModuleRepository moduleRepo;
+	
+	@GetMapping("/getcourses")
+	public List<Course> getCourses(){
+		return courseRepo.findAll();
+	}
 		
 	@GetMapping("/{courseId}/getModules")
 	public Page<Module> getCourseModules(@PathVariable(value = "courseId") Long courseId, Pageable pageable) {
@@ -41,16 +47,12 @@ public class CourseController {
 		return modules;		
 	}
 	
+	@PreAuthorize("hasE_Type('TRAINER')")
 	@PostMapping("/add")
 	public void createCourse(Course course, @RequestParam("madeByTrainerId") Long madeByTrainerId) {
 		course.setTrainerId(madeByTrainerId);
 		courseRepo.save(course);
 	}
 
-	@GetMapping("/searchCourse")
-	public String getCourseIdName() {
-		Gson gson = new Gson();
-		return gson.toJson(courseRepo.findAll());
-	}
 
 }

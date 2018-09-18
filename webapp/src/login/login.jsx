@@ -23,25 +23,22 @@ class Login extends Component {
                     sessionStorage.utype = myJson.type;
 
                     //change below address for redirecting
-                    document.location.href = '/login';
+                    document.location.href = 'http://www.mozilla.org';
                 } else{
                     document.getElementById("result").innerHTML = "Email does not exist";
                 }
             });
-    };
+    }
 
 
     render() {
         return (
-            <div className="login w3-padding w3-display-middle">
-                <h3>Login</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="email" placeholder="Email" name="email" required />
-                    <input type="password" placeholder="Password" name="password" />
-                    <div id="result"></div>
-                    <input type="submit" value="Login" />
-                </form>
-            </div>
+            <form onSubmit={this.handleSubmit}>
+                <input type="email" placeholder="Email" name="email" required />
+                <input type="password" placeholder="Password" name="password" />
+                <div id="result"></div>
+                <input type="submit" value="Login" />
+            </form>
         )
     }
 }

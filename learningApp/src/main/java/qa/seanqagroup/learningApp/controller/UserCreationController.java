@@ -1,5 +1,7 @@
 package qa.seanqagroup.learningApp.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.json.JSONException;
@@ -27,6 +29,10 @@ public class UserCreationController {
 	@Autowired
 	UserRepository userRepo;
 	
+	@GetMapping ("/u")
+	public List<User> getAllUsers() {
+		return userRepo.findAll();
+	}
 	
 	
 	@GetMapping("/u/id/{id}")
