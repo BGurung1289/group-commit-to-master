@@ -25,7 +25,7 @@ class Form extends React.Component {
 
 data.append("moduleId", "5"); // this will need to be an ID given by JAVA.
 
-    fetch("http://localhost:8080/api/TestQuestionModel", {
+    fetch("http://localhost:8080/TestModel", {
         method: 'POST',
         body: JSON.stringify(arrayList)
 });
@@ -38,7 +38,7 @@ data.append("moduleId", "5"); // this will need to be an ID given by JAVA.
         }));
     }
 
-   // in the ID's, QC stands for question content, A stands for answer, the number corresponds to the Question Number and a/b/c/d are the different answers.
+   // in the ID's, TD stands for test description, QC stands for question content, A stands for answer, the number corresponds to the Question Number and a/b/c/d are the different answers.
  // a is the correct answer and the other letters are incorrect.
     render() {
         let {Questions } = this.state;
@@ -49,21 +49,26 @@ data.append("moduleId", "5"); // this will need to be an ID given by JAVA.
                 <p> Each question must have a minimal of one correct and one incorrect answer. You do not need to have more than one question. </p>
                 <TestTitle />
                 <br/>
+                   <label> How many marks is this test out of? </label>
+                   <input type="number" name = "totalMarks" className= "marks-for-test" required/>
+               <br/>
                 
+                <label> Please enter any further description or information you would like alongside your test? 
+                    </label> <input type="text" name="testDescription"  className="test-description" required/> <br />
+                
+
                 <label htmlFor="Question">Question 1</label>
-                <input type="text" id= {"QC" + 1} name={"questionContent"}  className="question-content" required/> <br />
+                <input type="text" name="QC1"  className="question-content" required/> <br />
                 <label>Please enter the correct answer</label>
-                <input type="text" id={"A" + 1 + "a"} name= "answerContent" className="answer" placeholder="Answer..." required /> <br />
+                <input type="text" name= "A1a" className="answer" placeholder="Answer..." required /> <br />
                 <label>Please enter your incorrect answers</label> <br />
-                <input type="text" id ={"A" + 1 + "b"} name= "answerContent" className="answer" placeholder="Answer..." required/> <br />
-                <input type="text" id ={"A" + 1 + "c"} name= "answerContent" className="answer" placeholder="Answer..." /> <br />
-                <input type="text" id ={"A" + 1 + "d"} name= "answerContent" className="answer" placeholder="Answer..." /> <br />
-                <label> How many marks is this test out of? </label>
-                <input type="number" name = "totalMarks" className= "marks-for-test"/>
+                <input type="text" name= "A1b" className="answer" placeholder="Answer..." required/> <br />
+                <input type="text" name= "A1c" className="answer" placeholder="Answer..." /> <br />
+                <input type="text" name= "A1d" className="answer" placeholder="Answer..." /> <br />
+              
                 
                <AddQuestions Questions={Questions}/> 
 
-                 
                 <input type="submit" value="Submit" />
             </form>
             <button onClick={this.addQuestion} >Add a new question</button>
