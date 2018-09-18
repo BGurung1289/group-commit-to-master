@@ -33,9 +33,6 @@ public class SectionControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
-	@Autowired
-	private SectionRepository sectionRepository;
-
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		htmlReporter = new ExtentHtmlReporter(

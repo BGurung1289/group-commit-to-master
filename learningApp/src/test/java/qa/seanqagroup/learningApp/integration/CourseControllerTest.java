@@ -33,9 +33,6 @@ public class CourseControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
-	@Autowired
-	private CourseRepository courseRepository;
-
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		htmlReporter = new ExtentHtmlReporter(
