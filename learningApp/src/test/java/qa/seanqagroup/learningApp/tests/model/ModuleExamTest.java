@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.fasterxml.jackson.databind.Module;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
 import qa.seanqagroup.learningApp.model.ModuleExam;
@@ -195,6 +196,24 @@ public class ModuleExamTest {
 		}catch(AssertionError e) {
 			getIdTest.fail("id not found");
 		}
-	}
 
+	}
+	
+
+//	@Test
+//	public void createExamTest() {
+//		ModuleExam exam = new ModuleExam();
+//		exam.setTestId((long) 74);
+//		exam.setTestName("hi");
+//		exam.setTotalMarks((long) 12);
+//		exam.setTestDescription("why");
+//		
+//		ModuleExam exam2 = new ModuleExam();
+//		String str = "[{\"title\":\"test_name\",\"value\":\"hi\"},{\"title\":\"totalMarks\",\"value\":\"12\"},{\"title\":\"testDescription\",\"value\":\"why\"},{\"title\":\"QC1\",\"value\":\"die\"}, {\"title\":\"A1a\",\"value\":\"by\"},{\"title\":\"A1b\",\"value\":\"bye\"},{\"title\":\"A1b\",\"value\":\"guy\"},{\"title\":\"A1b\",\"value\":\"sly\"},{\"title\":\"QC2\",\"value\":\"76\"},\r\n" + 
+//				" + {\"title\":\"A2a\",\"value\":\"kill\"},{\"title\":\"A2b\",\"value\":\"you\"},{\"title\":\"A2b\",\"value\":\"pie\"},{\"title\":\"A2b\",\"value\":\"cry\"}]";
+//		assertTrue(createTest(str),true);
+		
+	
 }
+	
+

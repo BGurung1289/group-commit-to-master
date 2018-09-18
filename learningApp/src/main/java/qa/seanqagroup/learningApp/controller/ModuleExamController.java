@@ -14,8 +14,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import qa.seanqagroup.learningApp.model.Answer;
 import qa.seanqagroup.learningApp.model.ModuleExam;
 import qa.seanqagroup.learningApp.model.TestQuestionModel;
+import qa.seanqagroup.learningApp.repository.AnswerRepo;
 import qa.seanqagroup.learningApp.repository.ModuleExamRepo;
 import qa.seanqagroup.learningApp.repository.TestQuestionRepository;
 
@@ -29,44 +31,76 @@ public class ModuleExamController {
 	@Autowired
 	TestQuestionRepository testQRepo;
 	
+	@Autowired
+	AnswerRepo answerRepo;
+	
 	@PostMapping("/TestModel")
-	public void createTest(@RequestBody String payload) {
+	public boolean createTest(@RequestBody String payload) {
 		try {
+			System.out.println(payload);
 			JsonParser parser = new JsonParser();
 			JsonArray arr = parser.parse(payload).getAsJsonArray();
 			ModuleExam exam = new ModuleExam();
-			TestQuestionModel questions = new TestQuestionModel();
-			
+			Long currentQuestion = (long) 0;
+			 
 			for (JsonElement json : arr) {
+				TestQuestionModel questions = new TestQuestionModel();
+				Answer answers = new Answer();
 				JsonObject testNameObj = json.getAsJsonObject();
 				String category = testNameObj.get("title").getAsString();
 				String inputs = testNameObj.get("value").getAsString();
 				
 				if (category.equals("test_name")) {
 					exam.setTestName(testNameObj.get("value").toString().replace("\"", ""));
+					return true;
+					
 				} else if (category.equals("totalMarks")) {
 					exam.setTotalMarks((long) Integer.parseInt(testNameObj.get("value").toString().replace("\"", "")));
+					return true;
 				}
+				
 				else if (category.equals("testDescription")) {
 					exam.setTestDescription(testNameObj.get("value").toString().replace("\"", ""));
+					exam.setModuleId((long) 3);
+					testRepo.save(exam);
+					return true;
 				}
+				
 				else if (category.indexOf("QC") != -1) {
 					questions.setQuestionContent(testNameObj.get("value").toString().replaceAll("\"", ""));
+					questions.setTestId(exam.getTestId());
+					testQRepo.save(questions);
+					currentQuestion = questions.getTestQuestionId();
+					return true;
 				}
 				else if (category.endsWith("a")) {
-					
+					answers.setAnswerContent(testNameObj.get("value").toString().replaceAll("\"", ""));
+					answers.setCorrect(true);
+					answers.setTestQuestionId(currentQuestion);
+					answerRepo.save(answers);
+					return true;
+		
+				}
+				else if (category.endsWith("b")) {
+					if (inputs.equals("")) {     // if the answer does not have any input. 
+						return true;
+					}
+					else {
+					// Because my JSON comes in a strange way, need to account for the speech marks that come with the answer identification.
+					answers.setAnswerContent(testNameObj.get("value").toString().replaceAll("\"", ""));
+					answers.setCorrect(false);
+					answers.setTestQuestionId(currentQuestion);
+					answerRepo.save(answers);
+					return true;
+					}
 				}
 			}
 			
-			exam.setModuleId((long) 3);
-			testRepo.save(exam);
-			
-			questions.setTestId((long) 19);
-			testQRepo.save(questions);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 }
 
