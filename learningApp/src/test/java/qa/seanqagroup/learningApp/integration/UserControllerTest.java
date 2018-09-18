@@ -33,7 +33,7 @@ public class UserControllerTest {
 	
 	@Test
 	public void loginToDatabase() throws Exception{
-		mvc.perform(MockMvcRequestBuilders.post("/login")
+		mvc.perform(MockMvcRequestBuilders.post("/ucc/login")
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				.param("email","b@b.b")
 				.param("password", "pass")

@@ -2,6 +2,7 @@ package qa.seanqagroup.learningApp.controller;
 
 import java.util.List;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,5 +47,10 @@ public class CourseController {
 		courseRepo.save(course);
 	}
 
+	@GetMapping("/searchCourse")
+	public String getCourseIdName() {
+		Gson gson = new Gson();
+		return gson.toJson(courseRepo.findAll());
+	}
 
 }

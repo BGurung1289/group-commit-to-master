@@ -51,7 +51,7 @@ public class TrainerController {
 		Trainer newTrainer = new Trainer();
 		newTrainer.setUserId(tempUser.getUserId());
 		tempUser.setUserType(E_UserType.TRAINER);
-		newTrainer.setTrainerManagerId(new Long(0));
+		newTrainer.setTrainerManagerId(new Long(0)); 
 		userRepo.save(tempUser);
 
 		return trainerRepo.save(newTrainer);
