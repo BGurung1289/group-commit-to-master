@@ -1,31 +1,50 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 import './App.css';
+import Header from "./main/Header";
+import Footer from "./main/Footers";
+import Home from "./main/Home";
+import Login from "./login/login";
+import Registration from "./registration/Registration";
+import Courses from "./LearnerDisplay/Courses";
+import {TrainerUserPage} from "./Trainer/TrainerUserPage";
 import AddCourse from "./Course/AddCourse";
-import AddModule from "./Course/AddModule";
-import AddSection from "./Course/AddSection";
-import Form from "./Exam/Form";
+import ShowCourseDetails from "./LearnerDisplay/ShowCourseDetails";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App w3-container w3-content w3-display-middle">
-        <Form />
-      </div>
-    );
-  }
+    state = {
+        courses: ''
+    };
+
+    async componentDidMount(){
+        console.log("MOUNTED")
+        this.courseValues = await fetch("http://localhost:8080/course/searchCourse")
+            .then(function (response) {
+                return response.json()
+            });
+
+        this.setState({courses: this.courseValues})
+    }
+    render() {
+        return (
+            <BrowserRouter>
+                <React.Fragment>
+                    <Header/>
+                    <main className="w3-content">
+                        <Route exact path="/" component={Home}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/register" component={Registration}/>
+                        <Route path="/courses" component={Courses}/>
+                        <Route path="/trainerPage" component={TrainerUserPage}/>
+                        <Route path="/addCourse" component={AddCourse}/>
+                        <Route path="/showcourse/:courseId" component={ShowCourseDetails}/>
+                    </main>
+                    <Footer/>
+                </React.Fragment>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;
-//  <AddCourse/>
-//          <br/>
-//          <AddModule/>
-//          <br/>
-//          <AddSection/>
-//        {/*<header className="App-header">*/}
-//          {/*<img src={logo} className="App-logo" alt="logo" />*/}
-//          {/*<h1 className="App-title">Welcome to React</h1>*/}
-//        {/*</header>*/}
-//        {/*<p className="App-intro">*/}
-//          {/*To get started, edit <code>src/App.js</code> and save to reload.*/}
-//        {/*</p>*/}

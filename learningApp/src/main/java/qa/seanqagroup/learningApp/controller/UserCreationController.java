@@ -24,49 +24,47 @@ import qa.seanqagroup.learningApp.repository.UserRepository;
 @RequestMapping("/ucc")
 public class UserCreationController {
 
-	@Autowired
-	UserRepository userRepo;
-	
-	
-	
-	@GetMapping("/u/id/{id}")
-	public User getUserById(@PathVariable(value="id") Long userID) {
-		User user = userRepo.findById(userID).orElseThrow(()-> new ResourceNotFoundException("USER", "ID", userID));
-		return user;
-	}
-	@GetMapping("/u/e/{e}")
-	public User getUserByEmail(@PathVariable(value="e") String email) {
-		User user = userRepo.findByEmail(email);
-		return user;
-	}
-	
-	@PostMapping("/login")
-	public String checkDetails(User user) throws JSONException{
-		JSONObject obj = new JSONObject();
-		for (User everyone : userRepo.findAll()) {
-			System.out.println(everyone.getEmail());
-			if(everyone.getEmail().equals(user.getEmail())) {
-				if(everyone.getPassword().equals(user.getPassword())){
-					obj.put("name",everyone.getFirstName());
-					obj.put("id", everyone.getUserId());
-					obj.put("type", everyone.getUserType());
-					System.out.println("PASS RETURN");
-					return obj.toString();
-				}
-			}
-		}
-		System.out.println("FAIL RETURN");
-		obj.put("result", "fail");
-		return obj.toString();
-}
-	
-	
-	
-	
-	@PostMapping("/register")
-	public User registerUser(@Valid @RequestBody User user){
-		user.setUserType(E_UserType.LEARNER);
-		return userRepo.save(user);
-	}
-	
+    @Autowired
+    UserRepository userRepo;
+
+    @GetMapping("/u/id/{id}")
+    public User getUserById(@PathVariable(value = "id") Long userID) {
+        User user = userRepo.findById(userID).orElseThrow(() -> new ResourceNotFoundException("USER", "ID", userID));
+        return user;
+    }
+
+    @GetMapping("/u/e/{e}")
+    public User getUserByEmail(@PathVariable(value = "e") String email) {
+        User user = userRepo.findByEmail(email);
+        return user;
+    }
+
+    @PostMapping("/login")
+    public String checkDetails(User user) throws JSONException {
+        JSONObject obj = new JSONObject();
+        for (User everyone : userRepo.findAll()) {
+            System.out.println(everyone.getEmail());
+            if (everyone.getEmail().equals(user.getEmail())) {
+                if (everyone.getPassword().equals(user.getPassword())) {
+                    obj.put("result", "success");
+                    obj.put("name", everyone.getFirstName());
+                    obj.put("id", everyone.getUserId());
+                    obj.put("type", everyone.getUserType());
+                    System.out.println("PASS RETURN");
+                    return obj.toString();
+                }
+            }
+        }
+        System.out.println("FAIL RETURN");
+        obj.put("result", "fail");
+        return obj.toString();
+    }
+
+
+    @PostMapping("/register")
+    public User registerUser(@Valid @RequestBody User user) {
+        user.setUserType(E_UserType.LEARNER);
+        return userRepo.save(user);
+    }
+
 }

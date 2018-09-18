@@ -58,4 +58,15 @@ public class CourseControllerTest {
 			test.fail("Didn't add course to database");
 		}
 	}
+
+	@Test
+	public void getCoursesTest() throws Exception {
+		test = extent.createTest("CourseController GET all courses");
+		try {
+			mvc.perform(MockMvcRequestBuilders.get("/course/searchCourse")).andExpect(status().isOk());
+			test.pass("GET all course details as JSON array");
+		} catch (Exception e) {
+			test.fail("Failed to GET all course details as JSON array");
+		}
+	}
 }

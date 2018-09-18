@@ -21,7 +21,7 @@ export default class AddCourse extends React.Component {
 
     render() {
         return (
-            <div id="addCourseDiv" className="w3-card">
+            <div id="addCourseDiv" className="addCourse w3-display-middle">
                 <form id="addCourseForm" onSubmit={this.handleSubmit}>
                     <label>Course Name</label>
                     <input name="courseName" type="text" placeholder="Enter course name"/>
