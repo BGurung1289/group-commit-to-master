@@ -10,8 +10,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name= "test_question")
-@EntityListeners(AuditingEntityListener.class)
+@Table(name= "Answer")
 public class Answer {
 	
 	@Id

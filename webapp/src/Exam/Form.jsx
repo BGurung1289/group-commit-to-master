@@ -63,8 +63,8 @@ data.append("moduleId", "5"); // this will need to be an ID given by JAVA.
                 <input type="text" name= "A1a" className="answer" placeholder="Answer..." required /> <br />
                 <label>Please enter your incorrect answers</label> <br />
                 <input type="text" name= "A1b" className="answer" placeholder="Answer..." required/> <br />
-                <input type="text" name= "A1c" className="answer" placeholder="Answer..." /> <br />
-                <input type="text" name= "A1d" className="answer" placeholder="Answer..." /> <br />
+                <input type="text" name= "A1b" className="answer" placeholder="Answer..." /> <br />
+                <input type="text" name= "A1b" className="answer" placeholder="Answer..." /> <br />
               
                 
                <AddQuestions Questions={Questions}/> 

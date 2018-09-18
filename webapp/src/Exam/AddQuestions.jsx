@@ -13,8 +13,8 @@ return (
                 <input type="text"  required name= {"A" + (id + 2) + "a"} className="answer" placeholder="Answer..." /> <br />
                 <label>Please enter your incorrect answers</label> <br />
                 <input type="text" required name= {"A" + (id + 2) + "b"} className="answer" placeholder="Answer..." /> <br />
-                <input type="text" name= {"A" + (id + 2) + "c"} className="answer" placeholder="Answer..." /> <br />
-                <input type="text" name= {"A" + (id + 2) + "d"} className="answer" placeholder="Answer..." /> <br />
+                <input type="text" name= {"A" + (id + 2) + "b"} className="answer" placeholder="Answer..." /> <br />
+                <input type="text" name= {"A" + (id + 2) + "b"} className="answer" placeholder="Answer..." /> <br />
                 </div>
                 )
                 })
