@@ -64,31 +64,7 @@ public class ModuleControllerTest {
 		}
 	}
 	
-	
-	
-
-	@Test
-	public void addExamTest() throws Exception {
-		test = extent.createTest("ModuleExamController, adding new exam");
-		try { 
-			mvc.perform(MockMvcRequestBuilders.post("/TestModel")
-					.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-					.param("test_name", "testing")
-					.param("total_marks", "20")
-					.param("testDescription", "A long test")
-					.param("QC1" , "why?" )
-					.param("A1a", "yes")
-					.param("A1b", "no")
-					.param("A1b", "no1")
-					.param("A1b" , "no2"))	
-					.andExpect(status().isOk());
-			test.pass("Add exam to the database; it is named 'testing', has a maximum score of 20 marks, has the following description 'A long test', has 1 question which asks 'why', 1 correct answer and 3 incorrect answers");
-	
-		} catch (AssertionError e) {
-			test.fail("Failed to add exam to the database");
-		}
-	}
-
+    @Test
 	public void getCoursesTest() throws Exception {
 		test = extent.createTest("CourseController GET all courses");
 		try {

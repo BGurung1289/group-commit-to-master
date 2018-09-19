@@ -54,39 +54,5 @@ public class VideoController {
 		}
 		return arr.toString();
 	}
-		
-		
-		
-		
-		
-		//		JSONObject obj = new JSONObject();
-//		ArrayList<JSONObject> arr = new ArrayList();
-//		ArrayList<SectionHasVideo> vidIds = new ArrayList();
-//		
-//		vidIds = shvR.findBySectionId(Long.parseLong(id));
-//		
-//		int i = 1;
-//		for(Video allVideos : videoR.findAll()) {
-//				String tobeFound = Long.toString(vidIds.get(i).getVideoId());
-//				String vidID = Long.toString(allVideos.getVideoId());
-//				i++;
-//				if(tobeFound.equals(vidID)) {
-//					obj.put("name", allVideos.getVideoName());
-//					obj.put("url", allVideos.getVideoUrl());
-//					arr.add(obj);
-//				}
-//			}
-//		return arr.toString();
-	
-	
-	
-//	for(Video allVideos : videoR.findAll()) {
-//	String strID = Long.toString(allVideos.getTrainerId());
-//	if(strID.equals(id) && (allVideos.isYoutube() == true)){
-//		obj.put("videoURL", allVideos.getVideoUrl());
-//		obj.put("videoName", allVideos.getVideoName());
-//		arr.add(obj);
-//	}
-//}
 
 }
