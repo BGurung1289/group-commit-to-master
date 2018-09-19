@@ -24,7 +24,7 @@ export default class Courses extends React.Component {
                 <ul>
                 {courses ? (
                     courses.map(course => (
-                            temp = "/courseDetails/" + course.courseId,
+                            temp = "/showcourse/" + course.courseId,
                                <li key={course.courseId}> <Link to={temp} key={course.courseId}>
                                     {course.courseName}
                                </Link> </li>

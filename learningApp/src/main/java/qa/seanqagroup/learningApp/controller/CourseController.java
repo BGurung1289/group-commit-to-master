@@ -12,6 +12,7 @@ import qa.seanqagroup.learningApp.repository.ModuleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/course")
@@ -58,5 +59,10 @@ public class CourseController {
         return gson.toJson(trainerCourses);
     }
 
-    
+    @GetMapping("/{courseId}")
+    public String getCourseDetails(@PathVariable(value = "courseId") Long courseId){
+        Gson gson = new Gson();
+        Optional<Course> course = courseRepo.findById(courseId);
+        return  gson.toJson(course);
+    }
 }
