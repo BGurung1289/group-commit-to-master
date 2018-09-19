@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../logreg.css';
 import {Link} from "react-router-dom";
 
+
 class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
@@ -19,21 +20,19 @@ class Login extends Component {
                     document.getElementById("result").innerHTML = "Wrong email or password";
                 } else if(myJson.result === "success"){
                     document.getElementById("result").innerHTML = "Welcome " + myJson.name;
-                    sessionStorage.userid = myJson.id;
-                    sessionStorage.name = myJson.name;
-                    sessionStorage.utype = myJson.type;
 
                     //change below address for redirecting
-                    document.location.href = '/';
+                    document.location.href = 'http://www.mozilla.org';
                 } else{
                     document.getElementById("result").innerHTML = "Email does not exist";
                 }
             });
-    };
+    }
 
 
     render() {
         return (
+<<<<<<< HEAD
            <div className ="form-container">
                 <h3>Login</h3>
                 <form onSubmit={this.handleSubmit}>
@@ -50,6 +49,14 @@ class Login extends Component {
                     
                 </form>
             </div>
+=======
+            <form onSubmit={this.handleSubmit}>
+                <input type="email" placeholder="Email" name="email" required />
+                <input type="password" placeholder="Password" name="password" />
+                <div id="result"></div>
+                <input type="submit" value="Login" />
+            </form>
+>>>>>>> 821a05aa79c8300794ee156d389c0b9c27f3ac9c
         )
     }
 }

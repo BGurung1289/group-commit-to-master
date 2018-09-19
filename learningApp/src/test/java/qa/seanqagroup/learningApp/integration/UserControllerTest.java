@@ -1,16 +1,11 @@
 package qa.seanqagroup.learningApp.integration;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -30,7 +25,6 @@ public class UserControllerTest {
 	@Autowired
 	private MockMvc mvc;
 	
-	
 	@Test
 	public void loginToDatabase() throws Exception{
 		mvc.perform(MockMvcRequestBuilders.post("/ucc/login")
@@ -41,5 +35,7 @@ public class UserControllerTest {
 		.andExpect(status() 
 				.isOk()); 
 	}
+	
+	
 }
 
