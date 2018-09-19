@@ -7,7 +7,7 @@ export default class Registration extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        /*MAPPING URL NEEDS TO BE PUT HERE*/
+
         fetch("http://localhost:8080//ucc//register", {
             method: 'POST',
             body: data
@@ -22,7 +22,7 @@ export default class Registration extends React.Component {
                 } else if (myJson.result === "successful") {
                     alert("successful register");
                     //change below address for redirecting
-                    document.location.href = 'http://www.mozilla.org';
+                    document.location.href = '/login';
                 }
             });
     }
@@ -31,16 +31,7 @@ export default class Registration extends React.Component {
         return (
             <div className="form-container">
                 <h1>Time to Register</h1>
-                <div className="register_form">
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" required placeholder="Email"/><br/>
-                        <input type="text" required placeholder="First Name"/><br/>
-                        <input type="text" required placeholder="Last Name"/><br/>
-                        <input type="password" required placeholder="Password"/><br/>
-                        <input className="reg-button" type="submit" value="Submit"/> <Link to='/login'> Looking to
-                        login? </Link>
-                    </form>
-                </div>
+
                 <div className="register_page">
                     <h1>Time to Register</h1>
                     <div className="register_form">
@@ -49,10 +40,8 @@ export default class Registration extends React.Component {
                             <input type="text" required placeholder="First Name" name="firstName"/><br/>
                             <input type="text" required placeholder="Last Name" name="lastName"/><br/>
                             <input type="password" required placeholder="Password" name="password"/><br/>
-                            <input name="" type="submit" value="Submit"/>
-
+                            <input type="submit" value="Submit"/>
                         </form>
-
                     </div>
                 </div>
             </div>

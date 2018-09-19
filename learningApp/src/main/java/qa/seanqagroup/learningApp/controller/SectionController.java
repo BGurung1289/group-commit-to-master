@@ -1,13 +1,8 @@
 package qa.seanqagroup.learningApp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.google.gson.Gson;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import qa.seanqagroup.learningApp.model.Section;
 import qa.seanqagroup.learningApp.model.SectionHasVideo;
 import qa.seanqagroup.learningApp.model.Video;
@@ -17,10 +12,11 @@ import qa.seanqagroup.learningApp.repository.VideoRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/section")
 public class SectionController {
 
 	@Autowired
-	private SectionRepository sectionRepository;
+	private SectionRepository sectionRepo;
 
 	@Autowired
 	private VideoRepository videoRepository;
@@ -28,10 +24,16 @@ public class SectionController {
 	@Autowired
 	private SectionHasVideoRepository shvRepository;
 
-	@PostMapping("/section/add")
+	@GetMapping("/{sectionId}")
+	public Section getSection(@PathVariable(value = "sectionId") Long sectionId) {
+		Section section = sectionRepo.getSectionBySectionId(sectionId);
+		return section;
+	}
+
+	@PostMapping("/add")
 	public String createSection(Section section) {
-		sectionRepository.save(section);
-		long id = sectionRepository.findAll().get(sectionRepository.findAll().size() - 1).getSectionId();
+		sectionRepo.save(section);
+		long id = sectionRepo.findAll().get(sectionRepo.findAll().size() - 1).getSectionId();
 
 		System.out.println("section made");
 		Gson gson = new Gson();
@@ -39,7 +41,7 @@ public class SectionController {
 		return store;
 	}
 
-	@PostMapping("/section/youtube")
+	@PostMapping("/youtube")
 	public void addYoutube(Video video, @RequestParam("sectionid") long sectionid) {
 		SectionHasVideo sectionHasVideo = new SectionHasVideo();
 
@@ -51,5 +53,11 @@ public class SectionController {
 		sectionHasVideo.setSectionId(sectionid);
 		sectionHasVideo.setVideoId(videoid);
 		shvRepository.save(sectionHasVideo);
+	}
+
+	@GetMapping("/searchSection")
+	public String getCourseIdName() {
+		Gson gson = new Gson();
+		return gson.toJson(sectionRepo.findAll());
 	}
 }

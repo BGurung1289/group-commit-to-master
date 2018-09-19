@@ -1,22 +1,45 @@
 package qa.seanqagroup.learningApp.controller;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import qa.seanqagroup.learningApp.model.Module;
+import qa.seanqagroup.learningApp.model.Section;
 import qa.seanqagroup.learningApp.repository.ModuleRepository;
+import qa.seanqagroup.learningApp.repository.SectionRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+import java.util.List;
+
 @RestController
+@RequestMapping("/module")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ModuleController {
 
 	@Autowired
-	private ModuleRepository moduleRepository;
+	private ModuleRepository moduleRepo;
 
-	@PostMapping("/module/add")
+	@Autowired
+	private SectionRepository sectionRepo;
+
+	@GetMapping("/{moduleId}/getSections")
+	public List<Section> getNumberOfSections(@PathVariable(value = "moduleId") Long moduleId) {
+		// h'mta modulidt
+		Module module = moduleRepo.getModuleByModuleId(moduleId);
+
+		//h'mta samtliga sections som tillh;r modulen
+		List<Section> sections = sectionRepo.getSectionsByModuleId(module.getModuleId());
+
+		return sections;
+	}
+
+	@PostMapping("/add")
 	public void createModule(Module module) {
-		moduleRepository.save(module);
+		moduleRepo.save(module);
+	}
+
+	@GetMapping("/searchModule")
+	public String getCourseIdName() {
+		Gson gson = new Gson();
+		return gson.toJson(moduleRepo.findAll());
 	}
 }
