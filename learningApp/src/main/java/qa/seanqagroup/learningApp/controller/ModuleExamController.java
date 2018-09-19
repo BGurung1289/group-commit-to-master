@@ -35,7 +35,7 @@ public class ModuleExamController {
 	AnswerRepo answerRepo;
 	
 	@PostMapping("/TestModel")
-	public boolean createTest(@RequestBody String payload) {
+	public void createTest(@RequestBody String payload) { // When you submit the exam on my react page, the System.out line below will display the json array coming from React.
 		try {
 			System.out.println(payload);
 			JsonParser parser = new JsonParser();
@@ -52,18 +52,15 @@ public class ModuleExamController {
 				
 				if (category.equals("test_name")) {
 					exam.setTestName(testNameObj.get("value").toString().replace("\"", ""));
-					return true;
 					
 				} else if (category.equals("totalMarks")) {
 					exam.setTotalMarks((long) Integer.parseInt(testNameObj.get("value").toString().replace("\"", "")));
-					return true;
 				}
 				
 				else if (category.equals("testDescription")) {
 					exam.setTestDescription(testNameObj.get("value").toString().replace("\"", ""));
 					exam.setModuleId((long) 3);
 					testRepo.save(exam);
-					return true;
 				}
 				
 				else if (category.indexOf("QC") != -1) {
@@ -71,19 +68,18 @@ public class ModuleExamController {
 					questions.setTestId(exam.getTestId());
 					testQRepo.save(questions);
 					currentQuestion = questions.getTestQuestionId();
-					return true;
 				}
+				
 				else if (category.endsWith("a")) {
 					answers.setAnswerContent(testNameObj.get("value").toString().replaceAll("\"", ""));
 					answers.setCorrect(true);
 					answers.setTestQuestionId(currentQuestion);
 					answerRepo.save(answers);
-					return true;
-		
+				
 				}
 				else if (category.endsWith("b")) {
 					if (inputs.equals("")) {     // if the answer does not have any input. 
-						return true;
+			
 					}
 					else {
 					// Because my JSON comes in a strange way, need to account for the speech marks that come with the answer identification.
@@ -91,7 +87,6 @@ public class ModuleExamController {
 					answers.setCorrect(false);
 					answers.setTestQuestionId(currentQuestion);
 					answerRepo.save(answers);
-					return true;
 					}
 				}
 			}
