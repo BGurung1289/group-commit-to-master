@@ -148,19 +148,5 @@ public class UserTestingTest {
 
 
 }
-//		@Test
-//		public void testUserCreationController() {
-//			 UserCreationController ucc = new UserCreationController();
-//			 User testUser = new User();
-//			 entityManager.persist(testUser);
-//			 entityManager.flush();
-//			 
-//			 Long id = new Long(10);
-//			 User user1 = ucc.getUserById(id);
-//			 User user2 = userRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("USER", "ID", id));
-//			 assertTrue(user1.getUserId().equals(user2.getUserId()));
-//			 
-//			
-//		}
-
+	
 }

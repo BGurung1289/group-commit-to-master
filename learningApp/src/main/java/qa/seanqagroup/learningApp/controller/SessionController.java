@@ -1,7 +1,11 @@
 package qa.seanqagroup.learningApp.controller;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +36,21 @@ public class SessionController {
 		newSession.setUserType(user.getUserType());
 		return sessionRepo.save(newSession);
 	}
+	@GetMapping("/getsession/{sessionid}")
+	public Session getSession(@PathVariable(value="sessionid")Long sessionid) {
+			Session session = sessionRepo.findById(sessionid).orElseThrow(()->new ResourceNotFoundException("SESSION", "ID", sessionid));
+			return session;
+			}
+	
+	@GetMapping("/validsession/{sessionid}")
+	public Boolean isValidSession(@PathVariable(value="sessionid")Long sessionid) {
+			Session session = sessionRepo.findById(sessionid).orElseThrow(()->new ResourceNotFoundException("SESSION", "ID", sessionid));
+			Timestamp timecheck = new Timestamp(Calendar.getInstance().getTimeInMillis());
+			if(session!=null&&(session.getTimeExpires().getTime()<timecheck.getTime()))
+			return new Boolean(true);
+			else return new Boolean(false);
+			}
+	
 //	@GetMapping("/startsession")
 //	public Session startSession() {
 //		System.out.println("Hello");
