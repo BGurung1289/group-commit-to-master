@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../logreg.css';
+import {Link} from "react-router-dom";
 
 class Login extends Component {
     handleSubmit = event => {
@@ -32,13 +34,20 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login w3-padding w3-display-middle">
+           <div className ="form-container">
                 <h3>Login</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="email" placeholder="Email" name="email" required />
+                    <div id = "form">
+                    <input type="email" placeholder="Email" name="email" required /> 
+                        <br/>
                     <input type="password" placeholder="Password" name="password" />
                     <div id="result"></div>
+                        </div>
+                    <div>
                     <input type="submit" value="Login" />
+                        <Link to='/register'>Looking to register? </Link>
+                    </div>
+                    
                 </form>
             </div>
         )

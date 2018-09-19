@@ -1,4 +1,6 @@
  import React from 'react';
+import {Link} from "react-router-dom";
+import '../logreg.css';
 
 export default class Registration extends React.Component{
 
@@ -12,7 +14,7 @@ export default class Registration extends React.Component{
     }
     render(){
         return (
-            <div className="register w3-padding w3-display-middle">
+            <div className = "form-container">
                 <h1>Time to Register</h1>
                 <div className="register_form">
                     <form onSubmit={this.handleSubmit}>
@@ -20,8 +22,9 @@ export default class Registration extends React.Component{
                         <input type="text" required placeholder="First Name" /><br/>
                         <input type="text" required placeholder="Last Name" /><br/>
                         <input type="password" required placeholder="Password" /><br />
-                        <input type="submit" value="Submit" />
+                        <input className= "reg-button" type="submit" value="Submit" /> <Link to='/login'> Looking to login? </Link>
                     </form>
+                     
                 </div>
             </div>
         )

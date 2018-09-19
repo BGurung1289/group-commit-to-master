@@ -3,7 +3,7 @@ import TestTitle from "./TestTitle";
 import AddQuestions from "./AddQuestions";
 
 class Form extends React.Component {
-    //....State holding an array
+
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ class Form extends React.Component {
         console.log(arrayList);    
     }
 
-data.append("moduleId", "5"); // this will need to be an ID given by JAVA.
+data.append("moduleId", "5");
 
     fetch("http://localhost:8080/TestModel", {
         method: 'POST',
@@ -38,8 +38,6 @@ data.append("moduleId", "5"); // this will need to be an ID given by JAVA.
         }));
     }
 
-   // in the ID's, TD stands for test description, QC stands for question content, A stands for answer, the number corresponds to the Question Number and a/b/c/d are the different answers.
- // a is the correct answer and the other letters are incorrect.
     render() {
         let {Questions } = this.state;
         return (

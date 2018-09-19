@@ -1,13 +1,18 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Login from "../login/login";
+import './main.css';
 
 export default function Home() {
     return(
-        <div className="w3-padding w3-display-middle">
+        <div>
             <h1>Welcome to Chi Unit</h1>
-            <Link to='/login'>Login</Link>
+            <div> 
+            <Login />             
+                
+            </div> 
             <br/>
-            <Link to='/register'>Register</Link>
+
         </div>
     )
 }
