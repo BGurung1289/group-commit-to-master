@@ -1,17 +1,22 @@
 package qa.seanqagroup.learningApp.controller;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
+
 import qa.seanqagroup.learningApp.model.Section;
 import qa.seanqagroup.learningApp.model.SectionHasVideo;
 import qa.seanqagroup.learningApp.model.Video;
 import qa.seanqagroup.learningApp.repository.SectionHasVideoRepository;
 import qa.seanqagroup.learningApp.repository.SectionRepository;
 import qa.seanqagroup.learningApp.repository.VideoRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/section")
@@ -62,16 +67,5 @@ public class SectionController {
 	public String getCourseIdName() {
 		Gson gson = new Gson();
 		return gson.toJson(sectionRepo.findAll());
-	}
-
-	@GetMapping("/trainerSection/{moduleId}")
-	public String getCoursesByTrainer(@PathVariable(value = "moduleId") Long moduleId) {
-		List<Section> trainerSections = new ArrayList<>();
-		List<Section> sections = sectionRepo.findAll();
-		for (Section eachSections : sections) {
-			if (eachSections.getModuleId() == moduleId) trainerSections.add(eachSections);
-		}
-		Gson gson = new Gson();
-		return gson.toJson(trainerSections);
 	}
 }

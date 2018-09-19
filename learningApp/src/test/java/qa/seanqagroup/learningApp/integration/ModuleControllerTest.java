@@ -1,6 +1,8 @@
 package qa.seanqagroup.learningApp.integration;
 
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -20,8 +22,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import qa.seanqagroup.learningApp.LearningAppApplication;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { LearningAppApplication.class })
@@ -97,5 +97,6 @@ public class ModuleControllerTest {
 			test.fail("Failed to GET all course details as JSON array");
 		}
 	}
+
 
 }

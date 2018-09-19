@@ -2,7 +2,9 @@ package qa.seanqagroup.learningApp.tests.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.json.JSONException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -11,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.servlet.config.MvcNamespaceHandler;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -21,6 +27,8 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
+import qa.seanqagroup.learningApp.controller.UserCreationController;
+import qa.seanqagroup.learningApp.exceptions.ResourceNotFoundException;
 import qa.seanqagroup.learningApp.model.User;
 import qa.seanqagroup.learningApp.model.enums.E_UserType;
 import qa.seanqagroup.learningApp.repository.UserRepository;
@@ -38,9 +46,7 @@ public class UserTestingTest {
 	private UserRepository userRepo;
 	
 	private static ExtentHtmlReporter htmlReporter;
-	
 	private static ExtentReports extent = new ExtentReports();
-	
 	private ExtentTest test;
 	
 	private static final String className = "UserTesting.html";
@@ -85,7 +91,7 @@ public class UserTestingTest {
 		test = extent.createTest("Test User Creation 2");
 		try {
 		assertTrue(userRepo.findById(testUser2.getUserId()).isPresent());
-		test.pass(MarkupHelper.createLabel("User found by ID", ExtentColor.GREEN));
+		test.pass(MarkupHelper.createLabel("User found by ID with details name:a, email: a@a.a", ExtentColor.GREEN));
 		}catch(AssertionError e) {
 			test.fail(MarkupHelper.createLabel("User Not found by ID", ExtentColor.RED));
 
@@ -105,7 +111,7 @@ public class UserTestingTest {
 		test = extent.createTest("Test User retrieval from database by email");
 		try {
 		assertEquals("Person Not Real",userRepo.findByEmail(testUser2.getEmail()).getFirstName(),"a");
-		test.pass(MarkupHelper.createLabel("User found by Email", ExtentColor.GREEN));
+		test.pass(MarkupHelper.createLabel("User found by Email with email: a@a.a", ExtentColor.GREEN));
 		}catch(AssertionError e) {
 			test.fail(MarkupHelper.createLabel("User Not found by Email", ExtentColor.RED));
 
@@ -137,30 +143,15 @@ public class UserTestingTest {
 		assertEquals("Person Not Real",persistedUser.getEmail(),"b@b.b");
 		assertEquals("Person Not Real",persistedUser.getPassword(),"p");
 		assertEquals("Person Not Real",persistedUser.getUserType(),E_UserType.LEARNER);
-		test.pass(MarkupHelper.createLabel("User getters and setters work", ExtentColor.GREEN));
+		test.pass(MarkupHelper.createLabel("User getters and setters work with details: name:b, lastname:b, email:b, password:p, userType:"+E_UserType.LEARNER, ExtentColor.GREEN));
 		}catch(AssertionError e) {
 			test.fail(MarkupHelper.createLabel("User getters and setters don't work", ExtentColor.RED));
-
 		}
 		finally {
 			entityManager.clear();
 		}
 
 
-}
-//		@Test
-//		public void testUserCreationController() {
-//			 UserCreationController ucc = new UserCreationController();
-//			 User testUser = new User();
-//			 entityManager.persist(testUser);
-//			 entityManager.flush();
-//			 
-//			 Long id = new Long(10);
-//			 User user1 = ucc.getUserById(id);
-//			 User user2 = userRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("USER", "ID", id));
-//			 assertTrue(user1.getUserId().equals(user2.getUserId()));
-//			 
-//			
-//		}
+}	
 
 }
