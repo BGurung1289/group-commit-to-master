@@ -29,10 +29,8 @@ public class User implements Serializable {
 //	private Email email; //if this causes issues with database use string type instead
 	@NotEmpty
 	private String email;
-
-
 	
-	
+	private boolean isActive;
 
 	public User() {
 	super();
@@ -48,12 +46,12 @@ public class User implements Serializable {
 	public User(@NotEmpty String firstName, @NotEmpty String lastName, String password, E_UserType userType,
 		@NotEmpty String email) {
 	super();
-//	this.userId = userId;
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.password = password;
 	this.userType = userType;
 	this.email = email;
+	this.isActive=true;
 }
 
 

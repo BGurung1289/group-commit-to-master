@@ -63,4 +63,15 @@ public class CourseControllerTest {
 					"We teach you to control chi, madeByTrainerId: 1");
 		}
 	}
+	
+	@Test
+	public void getCoursesTest() throws Exception {
+		test = extent.createTest("CourseController GET all courses");
+		try {
+			mvc.perform(MockMvcRequestBuilders.get("/course/searchCourse")).andExpect(status().isOk());
+			test.pass("GET all course details as JSON array");
+		} catch (Exception e) {
+			test.fail("Failed to GET all course details as JSON array");
+		}
+	}
 }

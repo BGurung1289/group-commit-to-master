@@ -75,5 +75,16 @@ public class SectionControllerTest {
 			test2.fail("Didn't add youtube URL to database");
 		}
 	}
+	
+	@Test
+	public void getCoursesTest() throws Exception {
+		ExtentTest  test= extent.createTest("SectionController GET all sections");
+		try {
+			mvc.perform(MockMvcRequestBuilders.get("/section/searchSection")).andExpect(status().isOk());
+			test.pass("GET all section details as JSON array");
+		} catch (Exception e) {
+			test.fail("Failed to GET all section details as JSON array");
+		}
+	}
 
 }
