@@ -23,6 +23,8 @@ export default class Section extends React.Component {
   }
 
   render() {
+      const {section} = this.state;
+
     return (
       <div className = "sectionDisplay">
         if (section === "Section not found") {
