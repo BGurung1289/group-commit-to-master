@@ -32,12 +32,12 @@ class Login extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
+
            <div className ="form-container">
                 <h3>Login</h3>
                 <form onSubmit={this.handleSubmit}>
                     <div id = "form">
-                    <input type="email" placeholder="Email" name="email" required /> 
+                    <input type="email" placeholder="Email" name="email" required />
                         <br/>
                     <input type="password" placeholder="Password" name="password" />
                     <div id="result"></div>
@@ -46,17 +46,18 @@ class Login extends Component {
                     <input type="submit" value="Login" />
                         <Link to='/register'>Looking to register? </Link>
                     </div>
-                    
+
                 </form>
+
+               <form onSubmit={this.handleSubmit}>
+                   <input type="email" placeholder="Email" name="email" required />
+                   <input type="password" placeholder="Password" name="password" />
+                   <div id="result"></div>
+                   <input type="submit" value="Login" />
+               </form>
             </div>
-=======
-            <form onSubmit={this.handleSubmit}>
-                <input type="email" placeholder="Email" name="email" required />
-                <input type="password" placeholder="Password" name="password" />
-                <div id="result"></div>
-                <input type="submit" value="Login" />
-            </form>
->>>>>>> 821a05aa79c8300794ee156d389c0b9c27f3ac9c
+
+
         )
     }
 }

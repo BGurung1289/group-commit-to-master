@@ -13,7 +13,6 @@ export default class Courses extends React.Component {
             }).then(courses => {
             this.setState({courses})
         });
-
     }
 
     render() {
@@ -22,15 +21,17 @@ export default class Courses extends React.Component {
         return (
             <div className="courses w3-display-middle">
                 <h2>Course List</h2>
+                <ul>
                 {courses ? (
                     courses.map(course => (
-                            temp = '/courseDetails/' + course.courseId,
-                                <Link to={temp} key={course.courseId}>
+                            temp = "/courseDetails/" + course.courseId,
+                               <li key={course.courseId}> <Link to={temp} key={course.courseId}>
                                     {course.courseName}
-                                </Link>
+                               </Link> </li>
                         )
                     )
                 ) : false}
+            </ul>
             </div>
         )
     }

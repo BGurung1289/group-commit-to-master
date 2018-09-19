@@ -10,8 +10,8 @@ export default class Course extends React.Component {
         super(props);
         this.state = {
             moduleSections,
-            courseId: props.match.params.courseId,
-            course: props.course,
+            course: props.match.params.courseId,
+            // course: props.course,
             module: 3,
             section: 0
         };

@@ -12,6 +12,10 @@ import {TrainerUserPage} from "./Trainer/TrainerUserPage";
 import AddCourse from "./Course/AddCourse";
 import ShowCourseDetails from "./LearnerDisplay/ShowCourseDetails";
 import Course from "./LearnerDisplay/Course";
+import TrainerCourse from "./Trainer/TrainerCourse";
+import AddModule from "./Course/AddModule";
+import TrainerModule from "./Trainer/TrainerModule";
+import AddSection from "./Course/AddSection";
 
 class App extends Component {
     state = {
@@ -27,6 +31,7 @@ class App extends Component {
 
         this.setState({courses: this.courseValues})
     }
+
     render() {
         return (
             <BrowserRouter>
@@ -38,9 +43,12 @@ class App extends Component {
                         <Route path="/register" component={Registration}/>
                         <Route path="/courses" component={Courses}/>
                         <Route path="/trainerPage" component={TrainerUserPage}/>
-                        <Route path="/addCourse" component={AddCourse}/>
+                        <Route path="/addCourse/:trainerId" component={AddCourse}/>
+                        <Route path="/trainerCourse/:courseId" component={TrainerCourse}/>
+                        <Route path="/addModule/:courseId" component={AddModule}/>
+                        <Route path="/trainerModule/:moduleId" component={TrainerModule}/>
+                        <Route path="/addSection/:moduleId" component={AddSection}/>
                         <Route path="/showcourse/:courseId" component={ShowCourseDetails}/>
-                        <Route path="/courseDetails/:courseId" component={ShowCourseDetails}/>
                     </main>
                     <Footer/>
                 </React.Fragment>

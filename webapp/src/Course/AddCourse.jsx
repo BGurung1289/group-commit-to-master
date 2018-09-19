@@ -1,18 +1,30 @@
 import React from "react";
 
 export default class AddCourse extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props.match)
+        this.state = {
+            trainerId: props.match.params.trainerId
+        };
+    }
+
     handleSubmit = (event) => {
-        event.preventDefault();
+        const {trainerId} = this.state;
+
         if (event.target.courseName.value.length !== 0 &&
             event.target.courseDescription.value.length !== 0) {
             const data = new FormData(event.target);
-            //TODO: change to trainer id
-            data.append("madeByTrainerId", 1);
+
+            data.append("madeByTrainerId", trainerId);
 
             fetch("http://localhost:8080/course/add", {
                 method: 'POST',
                 body: data
-            });
+            }).then(function () {
+                document.location.href = '/trainerPage';
+            })
+
         } else {
             event.preventDefault();
             document.getElementById("noContinue").innerHTML = "Need to fill in all input";
@@ -27,7 +39,8 @@ export default class AddCourse extends React.Component {
                     <input name="courseName" type="text" placeholder="Enter course name"/>
                     <br/>
                     <label>Course description</label>
-                    <input name="courseDescription" type="text" placeholder="Enter course description"/>
+                    <textarea name="courseDescription" rows="10" cols="70" type="text"
+                              placeholder="Enter course description"/>
                     <br/>
                     <div id="noContinue"></div>
                     <input type="submit" value="Add Course"/>

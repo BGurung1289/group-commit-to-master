@@ -1,11 +1,19 @@
 import React from "react";
 
 export default class AddSection extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props.match);
+        this.state = {
+            moduleId: props.match.params.moduleId
+        };
+    }
+
     handleSubmit = (event) => {
-        event.preventDefault();
         const data = new FormData(event.target);
-        //TODO: change moduleID to match moduleID clicked
-        data.append("moduleId", "3");
+        const {moduleId} = this.state;
+
+        data.append("moduleId", moduleId);
 
         // for (var pair of data.entries()) {
         //     console.log(pair[0] + ', ' + pair[1]);
@@ -21,6 +29,7 @@ export default class AddSection extends React.Component {
         }).then(function (myJson) {
             let sectionid = JSON.parse(myJson).sectionid;
             let youtubeForm = new FormData();
+            if (youtubeTitle.length == 0) return false;
             youtubeForm.append("videoUrl", youtubeurl);
             youtubeForm.append("sectionid", sectionid);
             youtubeForm.append("videoName", youtubeTitle);
@@ -30,19 +39,22 @@ export default class AddSection extends React.Component {
             fetch("http://localhost:8080/section/youtube", {
                 method: 'POST',
                 body: youtubeForm
-            });
+            })
+        }).then(function () {
+            document.location.href = "/trainerPage";
         });
     };
 
     render() {
         return (
-            <div id="addSectionDiv" className="w3-card">
+            <div id="addSectionDiv" className="w3-card w3-display-middle">
                 <form id="addSectionForm" onSubmit={this.handleSubmit}>
                     <label>Section Name</label>
                     <input name="sectionName" required type="text" placeholder="Enter section name"/>
                     <br/>
                     <label>Section content</label>
-                    <textarea name="sectionContent" size="20" type="text" placeholder="Enter section content"/>
+                    <textarea required name="sectionContent" size="20" cols="40" type="text"
+                              placeholder="Enter section content"/>
                     <br/>
                     <label>Upload video</label>
                     <input type="file"/>
