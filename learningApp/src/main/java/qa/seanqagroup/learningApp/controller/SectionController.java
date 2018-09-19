@@ -10,6 +10,9 @@ import qa.seanqagroup.learningApp.repository.SectionHasVideoRepository;
 import qa.seanqagroup.learningApp.repository.SectionRepository;
 import qa.seanqagroup.learningApp.repository.VideoRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/section")
@@ -59,5 +62,16 @@ public class SectionController {
 	public String getCourseIdName() {
 		Gson gson = new Gson();
 		return gson.toJson(sectionRepo.findAll());
+	}
+
+	@GetMapping("/trainerSection/{moduleId}")
+	public String getCoursesByTrainer(@PathVariable(value = "moduleId") Long moduleId) {
+		List<Section> trainerCourses = new ArrayList<>();
+		List<Section> sections = sectionRepo.findAll();
+		for (Section eachCourse : sections) {
+			if (eachCourse.getModuleId() == moduleId) trainerCourses.add(eachCourse);
+		}
+		Gson gson = new Gson();
+		return gson.toJson(trainerCourses);
 	}
 }

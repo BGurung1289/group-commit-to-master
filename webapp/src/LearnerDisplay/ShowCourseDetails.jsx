@@ -23,6 +23,7 @@ export default class CourseDetails extends React.Component {
 
     render() {
         const {courseDetails} = this.state;
+        console.log(courseDetails)
         const course = Object.create(courseDetails);
 
         return (

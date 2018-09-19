@@ -8,6 +8,7 @@ import qa.seanqagroup.learningApp.model.Section;
 import qa.seanqagroup.learningApp.repository.ModuleRepository;
 import qa.seanqagroup.learningApp.repository.SectionRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,4 +44,14 @@ public class ModuleController {
         return gson.toJson(moduleRepo.findAll());
     }
 
+    @GetMapping("/trainerModules/{courseId}")
+    public String getCoursesByTrainer(@PathVariable(value = "courseId") Long courseId) {
+        List<Module> trainerCourses = new ArrayList<>();
+        List<Module> modules = moduleRepo.findAll();
+        for (Module eachCourse : modules) {
+            if (eachCourse.getCourseId() == courseId) trainerCourses.add(eachCourse);
+        }
+        Gson gson = new Gson();
+        return gson.toJson(trainerCourses);
+    }
 }
