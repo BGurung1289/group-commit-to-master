@@ -1,4 +1,4 @@
-package qa.seanqagroup.learningApp.tests.model;
+package qa.seanqagroup.learningApp.integration;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,7 +31,7 @@ import qa.seanqagroup.learningApp.repository.SectionHasVideoRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { LearningAppApplication.class })
 @AutoConfigureMockMvc
-public class VideoTestingTest {
+public class VideoControllerTest {
 
 	private static ExtentHtmlReporter htmlReporter;
 	private static ExtentReports extent = new ExtentReports();
