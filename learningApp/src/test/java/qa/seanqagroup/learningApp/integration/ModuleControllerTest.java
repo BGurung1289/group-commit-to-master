@@ -1,13 +1,12 @@
 package qa.seanqagroup.learningApp.integration;
 
-<<<<<<< HEAD
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-=======
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
->>>>>>> branch 'master' of https://github.com/LMSGroupProject/group-commit-to-master.git
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,11 +19,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import qa.seanqagroup.learningApp.LearningAppApplication;
-<<<<<<< HEAD
-=======
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
->>>>>>> branch 'master' of https://github.com/LMSGroupProject/group-commit-to-master.git
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { LearningAppApplication.class })
@@ -70,7 +67,6 @@ public class ModuleControllerTest {
 	
 
 	@Test
-<<<<<<< HEAD
 	public void addExamTest() throws Exception {
 		test = extent.createTest("ModuleExamController, adding new exam");
 		try { 
@@ -91,7 +87,7 @@ public class ModuleControllerTest {
 			test.fail("Failed to add exam to the database");
 		}
 	}
-=======
+
 	public void getCoursesTest() throws Exception {
 		test = extent.createTest("CourseController GET all courses");
 		try {
@@ -102,5 +98,5 @@ public class ModuleControllerTest {
 		}
 	}
 
->>>>>>> branch 'master' of https://github.com/LMSGroupProject/group-commit-to-master.git
+
 }
