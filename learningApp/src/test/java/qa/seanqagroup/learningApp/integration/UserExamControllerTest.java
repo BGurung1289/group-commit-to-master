@@ -1,6 +1,5 @@
 package qa.seanqagroup.learningApp.integration;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.AfterClass;
@@ -20,27 +19,28 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
-import qa.seanqagroup.learningApp.repository.ModuleRepository;
+import qa.seanqagroup.learningApp.repository.ModuleExamRepo;
+import qa.seanqagroup.learningApp.repository.UserHasExamRepo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { LearningAppApplication.class })
 @AutoConfigureMockMvc
-public class ModuleControllerTest {
-
+public class UserExamControllerTest {
+	
 	private static ExtentHtmlReporter htmlReporter;
 	private static ExtentReports extent = new ExtentReports();
 	private ExtentTest test;
-
+	
 	@Autowired
 	private MockMvc mvc;
-
+	
 	@Autowired
-	private ModuleRepository moduleRepository;
+	private UserHasExamRepo userExamRepo;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		htmlReporter = new ExtentHtmlReporter(
-				"C:\\Users\\Admin\\Desktop\\ExtentReports\\ModuleControllerTestReport.html");
+				"C:\\Users\\Admin\\Desktop\\ExtentReports\\UserExamControllerTestReport.html");
 		extent.attachReporter(htmlReporter);
 	}
 
@@ -48,21 +48,21 @@ public class ModuleControllerTest {
 	public static void tearDownAfterClass() {
 		extent.flush();
 	}
-
+	
 	@Test
-	public void addModuleTest() throws Exception {
-		test = extent.createTest("ModuleController add module POST");
-		try {
-			mvc.perform(MockMvcRequestBuilders.post("/module/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-					.param("moduleName", "Control Chi(Energy)")
-					.param("moduleDescription", "Think, breath, and control")
-					.param("courseId", "15"))
-					.andExpect(status().isOk());
-			test.pass("Added module: moduleName: Control Chi(Energy), moduleDescription: "
-					+ "Think, breath, and control, courseId: 15");
-		} catch (AssertionError e) {
-			test.fail("Failed to add: moduleName: Control Chi(Energy), moduleDescription:"
-					+ "Think, breath, and control, courseId: 15");
+	public void addUserExamToDatabase() throws Exception{
+		test = extent.createTest("UserHasExam Controller, User taking exam");
+		try{
+			mvc.perform(MockMvcRequestBuilders.post("/usertest")
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+				.param("testId", "100")
+				.param("userId", "1")
+				.param("isCompleted", "false"))
+		        .andExpect(status().isOk());
+			test.pass("Adding user taking exam to database with test id of '1', user id of '1', total marks of '10' and completd status of 'false'");
+		}catch(AssertionError e) {
+			test.fail("failed to add user taking exam to database");
+			
 		}
 	}
 

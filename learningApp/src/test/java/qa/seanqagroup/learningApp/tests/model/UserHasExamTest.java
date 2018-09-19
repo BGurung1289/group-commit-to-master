@@ -67,9 +67,9 @@ public class UserHasExamTest {
 		try{
 			entityManager.persist(userExam);
 			entityManager.flush();
-			createUserTest.pass("User has been assigned exam");
+			createUserTest.pass("User with id '1' has been assigned exam with id '1'");
 		}catch(Exception e) {
-			createUserTest.fail("User has not been assigned exam");
+			createUserTest.fail("failed to assign user to exam");
 		}
 		
 		UserHasExamKey key = new UserHasExamKey(userExam.getUserId(), userExam.getTestId());
@@ -77,9 +77,9 @@ public class UserHasExamTest {
 		
 		try{
 			assertTrue(temp.getUserId().equals((long) 1));
-			findUserTest.pass("user and assigned exam found");
+			findUserTest.pass("user with id '1' and assigned exam found");
 		}catch(AssertionError e) {
-			findUserTest.fail("user and assigned exam not found");
+			findUserTest.fail("failed to find user with id '1' and assigned exam");
 		}
 	}
 	
@@ -94,16 +94,16 @@ public class UserHasExamTest {
 		
 		try{
 			userExam.setCompleted(true);
-			setCompletedTest.pass("Exam completion set");
+			setCompletedTest.pass("Assigned exam created and set to completed");
 		}catch(Exception e) {
-			setCompletedTest.fail("Exam completion not set");
+			setCompletedTest.fail("failed to set assigned exam to completed");
 		}
 		
 		try{
 			assertTrue(userExam.isCompleted() == true);
-			getCompletedTest.pass("Exam completion state found");
+			getCompletedTest.pass("Assigned exam found as completed");
 		}catch(AssertionError e) {
-			getCompletedTest.fail("Exam completion state not found");
+			getCompletedTest.fail("failed to find completion satus of exam");
 		}
 	}
 	
@@ -118,16 +118,16 @@ public class UserHasExamTest {
 		
 		try{
 			userExam.setMarksCorrect((long) 10);
-			setMarksTest.pass("Marks correct set");
+			setMarksTest.pass("Assigned exam created and marks correct set as '10'");
 		}catch(Exception e) {
-			setMarksTest.fail("Marks correct not set");
+			setMarksTest.fail("failed to set marks correct of assigned exam");
 		}
 		
 		try{
 			assertTrue(userExam.getMarksCorrect().equals((long) 10));
-			getMarksTest.pass("Marks correct found");
+			getMarksTest.pass("Total marks of assigned exam found as '10'");
 		}catch(AssertionError e) {
-			getMarksTest.fail("Marks correct not found");
+			getMarksTest.fail("failed to find marks correct of assigned exam");
 		}
 	}
 }

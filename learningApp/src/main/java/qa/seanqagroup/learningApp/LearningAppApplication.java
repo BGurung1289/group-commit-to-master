@@ -1,3 +1,4 @@
+
 package qa.seanqagroup.learningApp;
 
 import org.springframework.boot.SpringApplication;

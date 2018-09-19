@@ -1,4 +1,5 @@
 package qa.seanqagroup.learningApp.tests.model;
+
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
@@ -14,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.fasterxml.jackson.databind.Module;
 
 import qa.seanqagroup.learningApp.LearningAppApplication;
 import qa.seanqagroup.learningApp.model.ModuleExam;
@@ -60,21 +60,21 @@ public class ModuleExamTest {
 
 		ModuleExam exam = new ModuleExam();
 		exam.setTestName("test exam");
-		exam.setTestDescription("testing the testing");
+		exam.setTestDescription("desc");
 		exam.setTotalMarks((long) 10);
 		exam.setModuleId((long) 3);
 		try {
 			entityManager.persist(exam);
 			entityManager.flush();
-			createTest.pass("created exam");
+			createTest.pass("created exam with name of 'test exam', description of 'desc', total marks of '10', and module id of '3'");
 		} catch (Exception e) {
 			findTest.fail("exam not created");
 		}
 		try {
 			assertTrue(moduleExamRepo.findById(exam.getTestId()).isPresent());
-			findTest.pass("found exam");
+			findTest.pass("found created exam from database");
 		} catch (AssertionError e) {
-			findTest.fail("exam not found");
+			findTest.fail("exam not found in database");
 		}
 	}
 
@@ -89,16 +89,16 @@ public class ModuleExamTest {
 		
 		try{
 			exam.setTestName("test exam");
-			setNameTest.pass("name set");
+			setNameTest.pass("exam created and name set as 'test exam'");
 		}catch(Exception e) {
-			setNameTest.fail("name not set");
+			setNameTest.fail("failed to set name of created exam");
 		}
 		
 		try{
 			assertTrue(exam.getTestName().equals("test exam"));
-			getNameTest.pass("name found");
+			getNameTest.pass("exam name found as 'test exam'");
 		}catch(AssertionError e) {
-			getNameTest.fail("name not found");
+			getNameTest.fail("failed to find exam name");
 		}
 	}
 
@@ -112,17 +112,17 @@ public class ModuleExamTest {
 		ModuleExam exam = new ModuleExam();
 		
 		try{
-			exam.setTestDescription("testing the test");
-			setDescTest.pass("description set");
+			exam.setTestDescription("desc");
+			setDescTest.pass("exam created and description set as 'desc'");
 		}catch(Exception e) {
-			setDescTest.fail("description not set");
+			setDescTest.fail("failed to set description of created exam");
 		}
 		
 		try{
-			assertTrue(exam.getTestDescription().equals("testing the test"));
-			getDescTest.pass("description found");
+			assertTrue(exam.getTestDescription().equals("desc"));
+			getDescTest.pass("exam description found as 'desc'");
 		}catch(AssertionError e) {
-			getDescTest.fail("description not found");
+			getDescTest.fail("failed to find description of exam");
 		}
 	}
 
@@ -137,16 +137,16 @@ public class ModuleExamTest {
 		
 		try{
 			exam.setTotalMarks((long) 10);
-			setMarkTest.pass("total marks set");
+			setMarkTest.pass("created exam and set total marks as '10'");
 		}catch(Exception e) {
-			setMarkTest.fail("total marks not set");
+			setMarkTest.fail("failed to set total marks of created exam");
 		}
 		
 		try{
 			assertTrue(exam.getTotalMarks().equals((long) 10));
-			getMarkTest.pass("total marks found");
+			getMarkTest.pass("total marks of exam found as '10'");
 		}catch(AssertionError e) {
-			getMarkTest.fail("total marks not found");
+			getMarkTest.fail("failed to find total marks of exam");
 		}
 	}
 
@@ -161,16 +161,16 @@ public class ModuleExamTest {
 		
 		try{
 			exam.setModuleId((long) 3);
-			setModuleIdTest.pass("module id set");
+			setModuleIdTest.pass("created exam and set module id as '3'");
 		}catch(Exception e) {
-			setModuleIdTest.fail("module id not set");
+			setModuleIdTest.fail("failed to set module id of created exam");
 		}
 		
 		try{
 			assertTrue(exam.getModuleId().equals((long) 3));
-			getModuleIdTest.pass("module id found");
+			getModuleIdTest.pass("module id of exam found as '3'");
 		}catch(AssertionError e) {
-			getModuleIdTest.fail("module id not found");
+			getModuleIdTest.fail("failed to find total marks of exam");
 		}
 	}
 
@@ -185,35 +185,17 @@ public class ModuleExamTest {
 		
 		try{
 			exam.setTestId((long) 5);
-			setIdTest.pass("id set");
+			setIdTest.pass("created exam and set id as '5'");
 		}catch(Exception e) {
-			setIdTest.fail("id not set");
+			setIdTest.fail("id of created exam not set");
 		}
 		
 		try{
 			assertTrue(exam.getTestId().equals((long) 5));
-			getIdTest.pass("id found");
+			getIdTest.pass("id of exam found as '5'");
 		}catch(AssertionError e) {
-			getIdTest.fail("id not found");
+			getIdTest.fail("failed to find id of exam");
 		}
-
 	}
-	
 
-//	@Test
-//	public void createExamTest() {
-//		ModuleExam exam = new ModuleExam();
-//		exam.setTestId((long) 74);
-//		exam.setTestName("hi");
-//		exam.setTotalMarks((long) 12);
-//		exam.setTestDescription("why");
-//		
-//		ModuleExam exam2 = new ModuleExam();
-//		String str = "[{\"title\":\"test_name\",\"value\":\"hi\"},{\"title\":\"totalMarks\",\"value\":\"12\"},{\"title\":\"testDescription\",\"value\":\"why\"},{\"title\":\"QC1\",\"value\":\"die\"}, {\"title\":\"A1a\",\"value\":\"by\"},{\"title\":\"A1b\",\"value\":\"bye\"},{\"title\":\"A1b\",\"value\":\"guy\"},{\"title\":\"A1b\",\"value\":\"sly\"},{\"title\":\"QC2\",\"value\":\"76\"},\r\n" + 
-//				" + {\"title\":\"A2a\",\"value\":\"kill\"},{\"title\":\"A2b\",\"value\":\"you\"},{\"title\":\"A2b\",\"value\":\"pie\"},{\"title\":\"A2b\",\"value\":\"cry\"}]";
-//		assertTrue(createTest(str),true);
-		
-	
 }
-	
-

@@ -64,9 +64,9 @@ public class SectionTest {
 
 		try {
 			assertEquals("For Loop", section.getSectionName());
-			childTest.pass(MarkupHelper.createLabel("Found Name", ExtentColor.BLUE));
+			childTest.pass(MarkupHelper.createLabel("Found Name: For loop", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest.fail(MarkupHelper.createLabel("Failed to find name", ExtentColor.RED));
+			childTest.fail(MarkupHelper.createLabel("Failed to find name: For loop", ExtentColor.RED));
 		}
 
 		try {
@@ -78,9 +78,9 @@ public class SectionTest {
 
 		try {
 			assertEquals(1, section.getModuleId());
-			childTest3.pass(MarkupHelper.createLabel("Found module ID", ExtentColor.BLUE));
+			childTest3.pass(MarkupHelper.createLabel("Found module ID: 1", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest3.fail(MarkupHelper.createLabel("Failed to find module", ExtentColor.RED));
+			childTest3.fail(MarkupHelper.createLabel("Failed to find module: 1", ExtentColor.RED));
 		}
 
 	}
@@ -89,7 +89,7 @@ public class SectionTest {
 	public void saveAndGetFromRepository() {
 		Section section = new Section();
 		section.setSectionName("For Loop");
-		section.setSectionContent("There is enchanced and normal for loop");
+		section.setSectionContent("This is enchanced and normal for loop");
 		section.setModuleId(1);
 
 		entityManager.persist(section);
@@ -98,9 +98,9 @@ public class SectionTest {
 		test = extent.createTest("Check Section object is saved to database");
 		try {
 			assertTrue(sectionRepo.findById(section.getSectionId()).isPresent());
-			test.pass(MarkupHelper.createLabel("Found section in database", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Found section: name: For Loop, description: This is enchanced and normal for loop, moduleId: 1", ExtentColor.GREEN));
 		} catch (AssertionError e) {
-			test.fail(MarkupHelper.createLabel("Failed to save to database", ExtentColor.RED));
+			test.fail(MarkupHelper.createLabel("Failed to save: name: For Loop, description: This is enchanced and normal for loop, moduleId: 1", ExtentColor.RED));
 		}
 	}
 

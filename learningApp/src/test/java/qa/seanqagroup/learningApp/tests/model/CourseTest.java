@@ -66,9 +66,9 @@ public class CourseTest {
 
 		try {
 			assertEquals("Computer Science", course.getCourseName());
-			childTest.pass(MarkupHelper.createLabel("Found Name", ExtentColor.BLUE));
+			childTest.pass(MarkupHelper.createLabel("Found Name: Computer Science", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest.fail(MarkupHelper.createLabel("Failed to find name", ExtentColor.RED));
+			childTest.fail(MarkupHelper.createLabel("Failed to find name: Computer Science", ExtentColor.RED));
 		}
 
 		try {
@@ -80,9 +80,9 @@ public class CourseTest {
 
 		try {
 			assertEquals(1, course.getTrainerId());
-			childTest3.pass(MarkupHelper.createLabel("Found Trainer ID", ExtentColor.BLUE));
+			childTest3.pass(MarkupHelper.createLabel("Found Trainer ID: 1", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest3.fail(MarkupHelper.createLabel("Failed to find trainer", ExtentColor.RED));
+			childTest3.fail(MarkupHelper.createLabel("Failed to find trainer: 1", ExtentColor.RED));
 		}
 
 	}
@@ -100,9 +100,9 @@ public class CourseTest {
 		test = extent.createTest("Check Course object is saved to database");
 		try {
 			assertTrue(courseRepository.findById(course.getCourseId()).isPresent());
-			test.pass(MarkupHelper.createLabel("Found Course in database", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Added course: courseName: Computer Science, description: Exciting world of CS, trainerId: 1", ExtentColor.GREEN));
 		} catch (AssertionError e) {
-			test.fail(MarkupHelper.createLabel("Failed to save to database", ExtentColor.RED));
+			test.fail(MarkupHelper.createLabel("Failed Add: courseName: Computer Science, description: Exciting world of CS, trainerId: 1", ExtentColor.RED));
 		}
 	}
 

@@ -64,16 +64,16 @@ public class FavouriteVideoTest {
 
 		try {
 			assertEquals(1, favouriteVideo.getUserId());
-			childTest.pass(MarkupHelper.createLabel("Found User ID", ExtentColor.BLUE));
+			childTest.pass(MarkupHelper.createLabel("Found User ID: 1", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest.fail(MarkupHelper.createLabel("Failed to find User ID", ExtentColor.RED));
+			childTest.fail(MarkupHelper.createLabel("Failed to find User ID: 1", ExtentColor.RED));
 		}
 
 		try {
 			assertEquals(1, favouriteVideo.getVideoId());
-			childTest2.pass(MarkupHelper.createLabel("Found Video ID", ExtentColor.BLUE));
+			childTest2.pass(MarkupHelper.createLabel("Found Video ID: 1", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest2.fail(MarkupHelper.createLabel("Failed get video ID", ExtentColor.RED));
+			childTest2.fail(MarkupHelper.createLabel("Failed get video ID: 1", ExtentColor.RED));
 		}
 	}
 
@@ -93,9 +93,9 @@ public class FavouriteVideoTest {
 		test = extent.createTest("Check FavouriteVideo object is saved to database");
 		try {
 			assertTrue(favouriteVideo2.getUserId() == 1);
-			test.pass(MarkupHelper.createLabel("Found FavouriteVideo in database", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Found FavouriteVideo in database: userId: 1, videoId: 1", ExtentColor.GREEN));
 		} catch (AssertionError e) {
-			test.fail(MarkupHelper.createLabel("Failed to save to database", ExtentColor.RED));
+			test.fail(MarkupHelper.createLabel("Failed to save to database: userId: 1, videoId: 1", ExtentColor.RED));
 		}
 	}
 

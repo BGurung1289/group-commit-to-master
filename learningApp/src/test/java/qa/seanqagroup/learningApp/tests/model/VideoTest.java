@@ -66,9 +66,9 @@ public class VideoTest {
 
 		try {
 			assertEquals("How to for loop", video.getVideoName());
-			childTest.pass(MarkupHelper.createLabel("Found Name", ExtentColor.BLUE));
+			childTest.pass(MarkupHelper.createLabel("Found Name: How to for loop", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest.fail(MarkupHelper.createLabel("Failed to find name", ExtentColor.RED));
+			childTest.fail(MarkupHelper.createLabel("Failed to find name: How to for loop", ExtentColor.RED));
 		}
 
 		try {
@@ -80,15 +80,15 @@ public class VideoTest {
 
 		try {
 			assertEquals(true, video.isYoutube());
-			childTest3.pass(MarkupHelper.createLabel("Found youtube boolean", ExtentColor.BLUE));
+			childTest3.pass(MarkupHelper.createLabel("Found youtube boolean: true", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest3.fail(MarkupHelper.createLabel("Failed to find boolean", ExtentColor.RED));
+			childTest3.fail(MarkupHelper.createLabel("Failed to find boolean: true", ExtentColor.RED));
 		}
 		try {
 			assertEquals(1, video.getTrainerId());
-			childTest3.pass(MarkupHelper.createLabel("Found trainer ID", ExtentColor.BLUE));
+			childTest3.pass(MarkupHelper.createLabel("Found trainer ID: 1", ExtentColor.BLUE));
 		} catch (AssertionError e) {
-			childTest3.fail(MarkupHelper.createLabel("Failed to find trainer", ExtentColor.RED));
+			childTest3.fail(MarkupHelper.createLabel("Failed to find trainer: 1", ExtentColor.RED));
 		}
 
 	}
@@ -104,12 +104,12 @@ public class VideoTest {
 		entityManager.persist(video);
 		entityManager.flush();
 
-		test = extent.createTest("Check Module object is saved to database");
+		test = extent.createTest("Check youtube video data is saved to database");
 		try {
 			assertTrue(videoRepository.findById(video.getVideoId()).isPresent());
-			test.pass(MarkupHelper.createLabel("Found video in database", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Found video: name: How to for loop, url: http://www.youtube.com, youtube: 1, trainerId: 1", ExtentColor.GREEN));
 		} catch (AssertionError e) {
-			test.fail(MarkupHelper.createLabel("Failed to save to database", ExtentColor.RED));
+			test.fail(MarkupHelper.createLabel("Failed to save: name: How to for loop, url: http://www.youtube.com, youtube: 1, trainerId: 1", ExtentColor.RED));
 		}
 	}
 
