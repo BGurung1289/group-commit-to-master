@@ -6,12 +6,10 @@ export default class CourseDetails extends React.Component {
         this.state = {
             courseId: props.match.params.courseId
         };
-
     }
 
     render() {
         const {courseId} = this.state;
-
         console.log("COURSEID "+ courseId);
 
         return (

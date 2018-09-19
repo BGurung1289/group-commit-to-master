@@ -6,17 +6,14 @@ export default class Courses extends React.Component {
         courses: null
     };
 
-
-    // courseValues;
     componentDidMount() {
-        console.log("MOUNTED")
-        this.courseValues = fetch("http://localhost:8080/course/searchCourse")
+        fetch("http://localhost:8080/course/searchCourse")
             .then(function (response) {
                 return response.json()
             }).then(courses => {
-                this.setState({courses})
-            });
-        console.log(this.state.courses)
+            this.setState({courses})
+        });
+
     }
 
     render() {
@@ -27,7 +24,7 @@ export default class Courses extends React.Component {
                 <h2>Course List</h2>
                 {courses ? (
                     courses.map(course => (
-                            temp = '/showcourse/' + course.courseId,
+                            temp = '/courseDetails/' + course.courseId,
                                 <Link to={temp} key={course.courseId}>
                                     {course.courseName}
                                 </Link>
