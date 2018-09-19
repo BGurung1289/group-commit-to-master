@@ -23,7 +23,7 @@ export default class TrainerCourse extends React.Component {
     }
 
     render() {
-        console.log(this.state.modules)
+        console.log(this.state.modules);
         const {modules} = this.state;
         let temp;
         let pop;

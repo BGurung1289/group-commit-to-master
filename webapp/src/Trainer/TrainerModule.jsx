@@ -22,7 +22,6 @@ export default class TrainerModule extends React.Component {
     render() {
         const {sections} = this.state;
         let temp;
-        console.log("section "+ sections)
         return (
             <div className="w3-content">
                 <div>
