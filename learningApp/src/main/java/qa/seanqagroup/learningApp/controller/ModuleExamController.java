@@ -95,7 +95,6 @@ public class ModuleExamController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
 }
 
