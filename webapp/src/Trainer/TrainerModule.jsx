@@ -23,13 +23,13 @@ export default class TrainerModule extends React.Component {
     }
 
     render() {
-        const {sections} = this.state;
+        const {sections, moduleId} = this.state;
         let pop;
         return (
             <div className="w3-content">
                 <div>
                     <h3>Add new section</h3>
-                    <Link to='/addSection'>Add Section</Link>
+                    <Link to={'/addSection/' + moduleId}>Add Section</Link>
                 </div>
 
                 <div>
@@ -37,14 +37,14 @@ export default class TrainerModule extends React.Component {
                     <ul>
                         {sections ? (
                             sections.map(section => (
-                                        pop = (<Popover id="popover-positioned-right" title="Options">
-                                            <Link to={"/uploadVideo/"+section.sectionId}>Add Video to Cloudinary</Link>
-                                            <br/>
-                                            <Link to={"/addExam/"+section.sectionId}>View Section</Link>
-                                        </Popover>),
+                                    pop = (<Popover id="popover-positioned-right" title="Options">
+                                        <Link to={"/uploadVideo/" + section.sectionId}>Add Video to Cloudinary</Link>
+                                        <br/>
+                                        <Link to={"/addExam/" + section.sectionId}>View Section</Link>
+                                    </Popover>),
                                         <li key={section.sectionId}><OverlayTrigger rootClose trigger="click"
-                                                                                  placement="right"
-                                                                                  key={section.sectionId} overlay={pop}>
+                                                                                    placement="right"
+                                                                                    key={section.sectionId} overlay={pop}>
                                             <Button>{section.sectionName}</Button>
                                         </OverlayTrigger></li>
                                 )
@@ -54,15 +54,15 @@ export default class TrainerModule extends React.Component {
 
 
                     {/*<ul>*/}
-                        {/*{sections ? (*/}
-                            {/*sections.map(section => (*/}
-                                    {/*temp = "/trainerModule/" + section.sectionId,*/}
-                                        {/*<li key={section.sectionId}><Link to={temp} key={section.sectionId}>*/}
-                                            {/*{section.sectionName}*/}
-                                        {/*</Link></li>*/}
-                                {/*)*/}
-                            {/*)*/}
-                        {/*) : <h4>No modules to display</h4>}*/}
+                    {/*{sections ? (*/}
+                    {/*sections.map(section => (*/}
+                    {/*temp = "/trainerModule/" + section.sectionId,*/}
+                    {/*<li key={section.sectionId}><Link to={temp} key={section.sectionId}>*/}
+                    {/*{section.sectionName}*/}
+                    {/*</Link></li>*/}
+                    {/*)*/}
+                    {/*)*/}
+                    {/*) : <h4>No modules to display</h4>}*/}
                     {/*</ul>*/}
                 </div>
             </div>
