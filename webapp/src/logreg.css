@@ -2,6 +2,7 @@
     background-color: aqua;
 }
 form {
+    border-style: groove;
     text-align: center;
     width: 50%;
     padding-top: 20px;
@@ -9,6 +10,7 @@ form {
     margin: auto;
     border:1px solid #ccc;
     box-sizing: border-box;
+    opacity: 0.8;
 }
 
 h3 {
@@ -29,6 +31,10 @@ h3 {
     
 }
 
-input [type=email], input [type=password], input [type=text] {
-    background-color: aqua;
+h1 {
+
+}
+
+a {
+   
 }
