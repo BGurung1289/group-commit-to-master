@@ -46,6 +46,8 @@ export default class TrainerCourse extends React.Component {
                                             <Link to={temp} key={modules.moduleId}>Sections</Link>
                                             <br/>
                                             <Link to={addSectionUrl}>Add Section</Link>
+                                            <br/>
+                                            <Link to={"/addExam/"+module.moduleId}>Add Exam</Link>
                                         </Popover>),
                                         <li key={module.moduleId}><OverlayTrigger rootClose trigger="click"
                                                                                   placement="right"

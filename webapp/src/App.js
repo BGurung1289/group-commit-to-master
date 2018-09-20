@@ -11,11 +11,11 @@ import Courses from "./LearnerDisplay/Courses";
 import {TrainerUserPage} from "./Trainer/TrainerUserPage";
 import AddCourse from "./Course/AddCourse";
 import ShowCourseDetails from "./LearnerDisplay/ShowCourseDetails";
-import Course from "./LearnerDisplay/Course";
 import TrainerCourse from "./Trainer/TrainerCourse";
 import AddModule from "./Course/AddModule";
 import TrainerModule from "./Trainer/TrainerModule";
 import AddSection from "./Course/AddSection";
+import Form from "./Exam/Form";
 
 class App extends Component {
     state = {
@@ -43,6 +43,7 @@ class App extends Component {
                         <Route path="/register" component={Registration}/>
                         <Route path="/courses" component={Courses}/>
                         <Route path="/trainerPage" component={TrainerUserPage}/>
+                        <Route path="/addExam/:moduleId" component={Form}/>
                         <Route path="/addCourse/:trainerId" component={AddCourse}/>
                         <Route path="/trainerCourse/:courseId" component={TrainerCourse}/>
                         <Route path="/addModule/:courseId" component={AddModule}/>
