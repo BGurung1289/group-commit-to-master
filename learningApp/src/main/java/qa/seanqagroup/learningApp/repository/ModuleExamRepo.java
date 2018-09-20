@@ -7,5 +7,5 @@ import qa.seanqagroup.learningApp.model.ModuleExam;
 
 @Repository
 public interface ModuleExamRepo extends JpaRepository<ModuleExam, Long>{
-
+	ModuleExam findTestByModuleId(Long moduleId);
 }

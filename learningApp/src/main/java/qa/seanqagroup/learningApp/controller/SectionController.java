@@ -1,6 +1,8 @@
 package qa.seanqagroup.learningApp.controller;
 
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import qa.seanqagroup.learningApp.model.Section;
@@ -28,10 +30,17 @@ public class SectionController {
     private SectionHasVideoRepository shvRepository;
 
     @GetMapping("/{sectionId}")
-    public Section getSection(@PathVariable(value = "sectionId") Long sectionId) {
-        Section section = sectionRepo.getSectionBySectionId(sectionId);
-        return section;
-    }
+    public String getSection(@PathVariable(value = "sectionId") Long sectionId) {
+		Section currentSection = sectionRepo.getSectionBySectionId(sectionId);
+		
+		JSONObject section = new JSONObject();
+		
+		section.put("id", currentSection.getSectionId());
+		section.put("name", currentSection.getSectionName());
+		section.put("content",  currentSection.getSectionContent());
+		
+		return section.toString();
+	}
 
     @PostMapping("/add")
     public String createSection(Section section) {

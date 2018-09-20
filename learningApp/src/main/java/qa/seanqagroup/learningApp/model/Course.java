@@ -7,8 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 @Entity
 @Table(name = "Course")
+@CrossOrigin(origins = "http://localhost:3000")
 public class Course {
 	
 	@Id

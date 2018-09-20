@@ -10,9 +10,10 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name="answer")
+@Table(name= "answer")
+@EntityListeners(AuditingEntityListener.class)
 public class Answer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long answerId;
@@ -25,6 +26,10 @@ public class Answer {
 
 	public Long getAnswerId() {
 		return answerId;
+	}
+
+	public void setAnswerId(Long answerId) {
+		this.answerId = answerId;
 	}
 
 	public String getAnswerContent() {
@@ -50,8 +55,5 @@ public class Answer {
 	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
-
-	
-	
 
 }

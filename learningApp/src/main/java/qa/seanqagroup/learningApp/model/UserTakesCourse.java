@@ -5,12 +5,15 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import qa.seanqagroup.learningApp.compositekey.UserTakesCourseKey;
 
 
 @Entity
 @Table(name = "user_takes_course")
 @IdClass(UserTakesCourseKey.class)
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserTakesCourse implements Serializable {
 
 	@Id

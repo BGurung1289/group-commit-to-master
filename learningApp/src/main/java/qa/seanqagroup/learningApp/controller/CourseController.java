@@ -1,6 +1,8 @@
 package qa.seanqagroup.learningApp.controller;
 
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,15 +28,24 @@ public class CourseController {
     private ModuleRepository moduleRepo;
 
     @GetMapping("/{courseId}/getModules")
-    public Page<Module> getCourseModules(@PathVariable(value = "courseId") Long courseId, Pageable pageable) {
-        //h'mta kursIDt
-        Course course = courseRepo.getCourseByCourseId(courseId);
-
-        //h'mta samtliga moduler p[ det kursidt.
-        Page<Module> modules = moduleRepo.getModulesByCourseId(course.getCourseId(), pageable);
-
-        return modules;
-    }
+    public String getCourseModules(@PathVariable(value = "courseId") Long courseId, Pageable pageable) {	//Page<Module>
+		Course course = courseRepo.getCourseByCourseId(courseId);
+			
+		Page<Module> modules = moduleRepo.getModulesByCourseId(course.getCourseId(), pageable);
+		
+		ArrayList<JSONObject> moduleInfo = new ArrayList();
+		
+		for (Module module : modules) {
+			JSONObject obj = new JSONObject();
+			if (module.getCourseId() == courseId) {
+				obj.put("id", module.getModuleId());
+				obj.put("name", module.getModuleName());
+				moduleInfo.add(obj);
+			}
+		}
+		
+		return moduleInfo.toString();		
+	}
 
     @PostMapping("/add")
     public void createCourse(Course course, @RequestParam("madeByTrainerId") Long madeByTrainerId) {

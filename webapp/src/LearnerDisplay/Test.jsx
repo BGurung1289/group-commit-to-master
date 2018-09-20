@@ -1,52 +1,88 @@
 import React from 'react';
-import Question from './Question';
 
+let test = "";
 let questions = [];
 let correctAnswers;
+let result;
 
 export default class Test extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       module: props.currentModule,
-      test: 0,
-      question: 0
+      test,
+      questions,
+      testTaken: false,
+      result
     }
+    this.getTestResult = this.getTestResult.bind(this);
   }
 
-  async componentDidMount(state) {
+  async componentDidMount() {
+    let testId;
+    let qs;
+
     try {
-      const testUrl = `http://localhost:8080/module/${this.state.module}/getTest`;
+      const testUrl = `http://localhost:8080/module/${this.state.module}/getModuleTest`;
       let testResponse = await fetch(testUrl);
       let testResponseJSON = await testResponse.json();
-      this.state.test = await testResponseJSON.counter;
+      testId = await testResponseJSON;
 
-      const questionsUrl = `http://localhost:8080/test/${this.state.test}/getQuestions`;
+      const questionsUrl = `http://localhost:8080/test/${testId}/getQuestions`;
       let questionsResponse = await fetch(questionsUrl);
       let questionsResponseJSON = await questionsResponse.json();
-      questions = await questionsResponseJSON.counter;
+      qs = await questionsResponseJSON;
     }
     catch(e) {
-      console.log("No test found!");
+      testId = "";
+      qs = "";
     }
+
+    this.setState({
+      test: testId,
+      questions: qs
+    });
   }
 
-  updateQuestion() {
-    this.state.question++;
-    //N[GOT OM EVENTHANTERING AV SVAREN?
-    /*
-    if (correct)
-    */
-    correctAnswers++;
+  getTestResult() {
+    //number of radiobuttons named correct that are selected divided by question.answers.length = percentage to display in Test overview and store in database
+    this.setState({
+      testTaken: true
+      //result: calculatedResult
+    })
   }
 
   render() {
+    let output = [];
+
+    if (this.state.testTaken === true) {
+      output.push(
+        <div className = "TestResult">
+          Test result will be displayed here.
+        </div>
+        //Your result is: {this.state.result}
+      )
+    }
+    else {
+      this.state.questions.forEach(function(question){
+        output.push(
+          <div>{question.question}</div>
+        )
+        question.answers.forEach(function(answer){
+          output.push(
+            <div><input type="radio" id="answer" name={`${question.question}`} value={`${question.answers.correct}`}/>
+            <label>{answer.answer}</label></div>
+          )
+        })
+      })
+      output.push(<button onClick={this.getTestResult}>help me</button>)
+
+    }
+
     return (
-      (this.state.question > questions.length) ?
-      <div>Test overview will go here</div> :
-      //<TestOverview  /> : //OBS! TestOvrview m[ste byggas. Den ska visa resultatet av testet och n'r usern skickas dit m]ste resultatet av testet sparas  DBn
-      <Question currentQuestion = {this.state.question} />
-      //<button onClick={this.updateQuestion}>Next</button>
+      <div className = "testDisplay">
+        {output}
+      </div>
     );
   }
 }

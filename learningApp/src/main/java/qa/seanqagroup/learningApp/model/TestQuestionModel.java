@@ -15,8 +15,17 @@ public class TestQuestionModel implements Serializable {
 	
 	private String questionContent;
 	
-	// @NotBlank  
+	@NotBlank
 	private long testId;
+	
+	public TestQuestionModel () {}
+	
+	public TestQuestionModel (long testQuestionId, String questionContent, long testId) {
+		super();
+		this.testQuestionId = testQuestionId;
+		this.questionContent = questionContent;
+		this.testId = testId;
+	}
 
 	public long getTestQuestionId() {
 		return testQuestionId;
@@ -43,9 +52,3 @@ public class TestQuestionModel implements Serializable {
 	}
 	
 }
-
-// 	public TestQuestionModel (long testQuestionId, String questionContent, long testId) {
-//super();
-//this.testQuestionId = testQuestionId;
-//this.questionContent = questionContent;
-//this.testId = testId;

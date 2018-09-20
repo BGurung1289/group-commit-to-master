@@ -1,6 +1,8 @@
 package qa.seanqagroup.learningApp.controller;
 
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import qa.seanqagroup.learningApp.model.Module;
@@ -23,15 +25,27 @@ public class ModuleController {
     private SectionRepository sectionRepo;
 
     @GetMapping("/{moduleId}/getSections")
-    public List<Section> getNumberOfSections(@PathVariable(value = "moduleId") Long moduleId) {
-        // h'mta modulidt
-        Module module = moduleRepo.getModuleByModuleId(moduleId);
-
-        //h'mta samtliga sections som tillh;r modulen
-        List<Section> sections = sectionRepo.getSectionsByModuleId(module.getModuleId());
-
-        return sections;
-    }
+    public String getModuleSections(@PathVariable(value = "moduleId") Long moduleId) {
+		Module module = moduleRepo.getModuleByModuleId(moduleId);		
+		
+		ArrayList<Section> sections = sectionRepo.getSectionsByModuleId(module.getModuleId());
+		
+		ArrayList<JSONObject> sectionInfo = new ArrayList();
+		
+		int sectionCounter = 0;
+		
+		for (Section section : sections) {
+			JSONObject obj = new JSONObject();
+			if (section.getModuleId() == moduleId) {
+				obj.put("orderInModule", sectionCounter);
+				obj.put("id", section.getSectionId());
+				sectionInfo.add(obj);
+				sectionCounter++;
+			}
+		}
+		
+		return sectionInfo.toString();
+	}
 
     @PostMapping("/add")
     public void createModule(Module module) {

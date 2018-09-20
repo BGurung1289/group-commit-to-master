@@ -12,7 +12,6 @@ import qa.seanqagroup.learningApp.model.UserTakesCourse;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Long> {
-	
 	Page<Course> findByCourseName(List<UserTakesCourse> courseIds, Pageable pageable);
 	
 	Course getCourseByCourseId(Long courseId);
