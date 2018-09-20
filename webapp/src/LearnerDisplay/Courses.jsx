@@ -19,7 +19,7 @@ export default class Courses extends React.Component {
         const {courses} = this.state;
         let temp;
         return (
-            <div className="courses w3-display-middle">
+            <div className="courses w3-content">
                 <h2>Course List</h2>
                 <ul>
                 {courses ? (
