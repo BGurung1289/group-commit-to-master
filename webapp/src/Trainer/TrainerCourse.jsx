@@ -24,7 +24,7 @@ export default class TrainerCourse extends React.Component {
 
     render() {
         console.log(this.state.modules);
-        const {modules} = this.state;
+        const {modules, courseId} = this.state;
         let temp;
         let pop;
         let addSectionUrl;
@@ -33,7 +33,7 @@ export default class TrainerCourse extends React.Component {
             <div className="w3-content">
                 <div>
                     <h3>Add new module</h3>
-                    <Link to='/addModule'>Add Module</Link>
+                    <Link to={'/addModule/' + courseId}>Add Module</Link>
                 </div>
                 <div>
                     <h3>Your Modules</h3>
@@ -46,6 +46,8 @@ export default class TrainerCourse extends React.Component {
                                             <Link to={temp} key={modules.moduleId}>Sections</Link>
                                             <br/>
                                             <Link to={addSectionUrl}>Add Section</Link>
+                                            <br/>
+                                            <Link to={"/addExam/" + module.moduleId}>Add Exam</Link>
                                         </Popover>),
                                         <li key={module.moduleId}><OverlayTrigger rootClose trigger="click"
                                                                                   placement="right"

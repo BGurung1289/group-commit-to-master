@@ -26,6 +26,9 @@ export default function Header() {
                     <NavItem>
                         <Link to='/trainerPage'>Trainer</Link>
                     </NavItem>
+                    <NavItem>
+                        <Link to='/learner'>Learner</Link>
+                    </NavItem>
                 </Nav>
                 <Navbar.Collapse>
                     <Navbar.Form pullRight>

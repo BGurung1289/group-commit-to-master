@@ -1,23 +1,18 @@
 package qa.seanqagroup.learningApp.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import qa.seanqagroup.learningApp.model.Course;
 import qa.seanqagroup.learningApp.model.UserTakesCourse;
 import qa.seanqagroup.learningApp.repository.CourseRepository;
 import qa.seanqagroup.learningApp.repository.UserCourseRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserCourseController {
 	
 	private List<Course> courses;
