@@ -39,7 +39,7 @@ export default class DisplayYtVideo extends React.Component {
                     <h4>{this.state.name}</h4>
                 </div>
                 <div id="video_display">
-                    <iframe src={this.state.url} width="450px" height="300px"> </iframe>
+                    <iframe src={this.state.url} width="350px" height="250px"> </iframe>
                 </div>
             </div>
         )
