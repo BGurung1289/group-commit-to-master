@@ -28,7 +28,8 @@ export default class AddModule extends React.Component {
 
     render() {
         return (
-            <div id="addModuleDiv" className="w3-display-middle w3-card">
+            <div id="addModuleDiv" className="w3-content">
+                <h3>Add Module</h3>
                 <form id="addModuleForm" onSubmit={this.handleSubmit}>
                     <label>Module Name</label>
                     <input name="moduleName" required type="text" placeholder="Enter module name"/>

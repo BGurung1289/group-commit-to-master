@@ -49,13 +49,14 @@ export default class AddSection extends React.Component {
 
     render() {
         return (
-            <div id="addSectionDiv" className="w3-card w3-display-middle">
+            <div id="addSectionDiv" className="w3-content">
+                <h3>Add Section</h3>
                 <form id="addSectionForm" onSubmit={this.handleSubmit}>
                     <label>Section Name</label>
                     <input name="sectionName" required type="text" placeholder="Enter section name"/>
                     <br/>
                     <label>Section content</label>
-                    <textarea required name="sectionContent" size="20" cols="40" type="text"
+                    <textarea required name="sectionContent" rows="10" cols="70" type="text"
                               placeholder="Enter section content"/>
                     <br/>
                     <label>Youtube Video Title</label>

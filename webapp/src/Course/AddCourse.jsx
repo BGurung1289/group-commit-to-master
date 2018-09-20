@@ -33,7 +33,8 @@ export default class AddCourse extends React.Component {
 
     render() {
         return (
-            <div id="addCourseDiv" className="addCourse w3-display-middle">
+            <div id="addCourseDiv" className="addCourse w3-content">
+                <h3>Add Course </h3>
                 <form id="addCourseForm" onSubmit={this.handleSubmit}>
                     <label>Course Name</label>
                     <input name="courseName" type="text" placeholder="Enter course name"/>

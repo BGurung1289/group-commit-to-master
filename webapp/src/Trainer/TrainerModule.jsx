@@ -40,6 +40,8 @@ export default class TrainerModule extends React.Component {
                                     pop = (<Popover id="popover-positioned-right" title="Options">
                                         <Link to={"/uploadVideo/" + section.sectionId}>Add Video to Cloudinary</Link>
                                         <br/>
+                                        <Link to={"/addYoutube/" + section.sectionId}>Add Youtube video</Link>
+                                        <br/>
                                         <Link to={"/viewSection/" + section.sectionId}>View Section</Link>
                                     </Popover>),
                                         <li key={section.sectionId}><OverlayTrigger rootClose trigger="click"

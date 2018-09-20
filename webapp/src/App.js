@@ -20,6 +20,7 @@ import Form from "./Exam/Form";
 import LearnerDisplayHomepage from "./LearnerDisplay/LearnerDisplayHomepage";
 import uploadVideoForm from "./yt-courseCreation/uploadVideoForm";
 import ViewSection from "./Trainer/ViewSection";
+import AddYoutube from "./Course/AddYoutube";
 
 class App extends Component {
     state = {
@@ -57,6 +58,7 @@ class App extends Component {
                         <Route path="/learner" component={LearnerDisplayHomepage}/>
                         <Route path="/uploadVideo/:sectionId" component={uploadVideoForm}/>
                         <Route path="/viewSection/:sectionId" component={ViewSection}/>
+                        <Route path="/addYoutube/:sectionId" component={AddYoutube}/>
                     </main>
                     <Footer/>
                 </React.Fragment>
