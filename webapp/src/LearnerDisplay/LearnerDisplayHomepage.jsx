@@ -1,26 +1,23 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import CourseOverview from './CourseOverview';
 import { BrowserRouter as Router } from 'react-router-dom';
-//import { Route } from 'react-router-dom';
-//import Course from './Course';
-//import GenerateOutput from './GenerateOutput';
-import CourseList from './CourseList';
 
 let courses;
 
 export default class LearnerDisplayHomepage extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       user: 1,
       courses
     };
-
-//    this.generateOutput = this.generateOutput.bind(this);
   }
 
   async componentDidMount() {
-    let userCourses;// = this.state.courses;
+    let userCourses;
     try {
       const learnerUrl = `http://localhost:8080/user/${this.state.user}/getCourses`;
       let learnerResponse = await fetch(learnerUrl);
@@ -28,43 +25,48 @@ export default class LearnerDisplayHomepage extends React.Component {
       userCourses = await learnerResponseJSON;
     }
     catch(e) {
-      userCourses = ""; //You are not assigned to any courses.
+      userCourses = "";
     }
     this.setState({
       courses: userCourses
     });
   }
 
-/*  generateOutput(courses) {
-    let output = "";
+  render() {
+    let output = [];
 
-    if (courses === "You are not assigned to any courses." || courses === null || courses === "") {
-        output = "HEJ"; //"<div>{state.courses}</div>";
+    if (this.state.courses === undefined || this.state.courses.length < 1) {
+        output += "You are not assigned to any courses.";
     }
     else {
-      output = "HEPP";
-      courses.forEach(course => {
-        output += course.id;  /*`<li>
-          <Link className = "courseLink" to = {/course/${courses.id}} course = ${courses.id}>${courses.name}Test</Link>
-        </li>`;*/
-    /*  })
+      this.state.courses.forEach(course => {
+        output.push(
+          <li>
+            <Link className = "courseLink" to = {`/course/${course.id}`} course = {course.id}>
+              {course.name}
+            </Link>
+            <React.Fragment>
+              <Route path = {`/course/${course.id}`} render = {(props) => <CourseOverview {...props} course = {course.id} /> }  />
+            </React.Fragment>
+          </li>
+        );
+      })
     }
-    return output;
-  }*/
 
-  render() {
-console.log(this.state.courses);
     return (
       <div className="homepage">
         <div className="header">
           <h1>My courses</h1>
         </div>
         <Router>
-          <div className="coursesList"><ul>
-          <CourseList courses = {this.state.courses} />
-          </ul></div>
+          <div className="coursesList">
+            <ul>
+              {output}
+            </ul>
+          </div>
         </Router>
       </div>
     );
   }
+
 }

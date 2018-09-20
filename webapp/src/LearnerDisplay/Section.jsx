@@ -1,43 +1,66 @@
 import React from 'react';
 
-let section;
+let sections = [];
+let currentSection;
+let content = "";
 
 export default class Section extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      section: props.currentSection
+      sections: props.sections,
+      currentSection: props.currentSection,
+      content
     }
   }
 
   async componentDidMount() {
+    let sectionContent;
+
+    let current;
+    this.state.sections.forEach(section => {
+      if (section.orderInModule === this.state.currentSection) {
+        current = section.id;
+      }
+    });
+
   try {
-      const sectionUrl = `http://localhost:8080/section/${this.state.section}`; 
-      let response = await fetch(sectionUrl);
-      let responseJSON = await response.json();
-      section = await responseJSON.courses;
+      const sectionUrl = `http://localhost:8080/section/${current}`;
+      let sectionResponse = await fetch(sectionUrl);
+      let sectionResponseJSON = await sectionResponse.json();
+      sectionContent = await sectionResponseJSON;
     }
     catch(e) {
-      section = "Section not found";
+      sectionContent = "";
     }
+
+    this.setState({
+      content: sectionContent
+    });
   }
 
   render() {
-      const {section} = this.state;
+    let output = [];
+
+    if (this.state.section === "" || this.state.section === null) {
+      output.push(
+        <div className = "errorMessage">
+          {currentSection}
+        </div>)
+      ;
+    }
+    else {
+      output.push(
+        <div className = "sectionInfo">
+          <h3>{this.state.content.name}</h3>
+          {this.state.content.content}
+        </div>
+      );
+    }
 
     return (
       <div className = "sectionDisplay">
-        if (section === "Section not found") {
-          <div className = "errorMessage">
-            { section }
-          </div>
-        }
-        else {
-          <div className = "sectionInfo">
-            <h3> { section.section_name } </h3>
-            { section.section_content }
-          </div>
-        }
+        {output}
       </div>
     );
   }
