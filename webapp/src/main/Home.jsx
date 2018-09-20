@@ -6,8 +6,8 @@ import './main.css';
 export default function Home() {
     return(
         <div>
-            <header> 
-              Welcome to Chi Unit </header>
+            <header> Welcome to  </header>
+            <header> Chi Unit </header>
            
             <div> 
             <Login />             

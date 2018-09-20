@@ -1,6 +1,7 @@
 import React from "react";
 import TestTitle from "./TestTitle";
 import AddQuestions from "./AddQuestions";
+import "./Exam.css";
 
 class Form extends React.Component {
 
@@ -47,36 +48,51 @@ class Form extends React.Component {
     render() {
         let {Questions} = this.state;
         return (
-            <div>
+            <div className = "form">
                 <form id=" test-form" onSubmit={this.handleSubmit}>
-                    <h3> Create a test </h3>
+                    <h2> Create a test </h2>
                     <p> Each question must have a minimal of one correct and one incorrect answer. You do not need to
                         have more than one question. </p>
                     <TestTitle/>
                     <br/>
                     <label> How many marks is this test out of? </label>
-                    <input type="number" name="totalMarks" className="marks-for-test" required/>
-                    <br/>
-
-                    <label> Please enter any further description or information you would like alongside your test?
-                    </label> <input type="text" name="testDescription" className="test-description" required/> <br/>
-
-
+                    <div className = "form-group">
+                     <input type="number" name="totalMarks" className="form-control" required/>
+                    </div>
+                    <label> Please enter any further description or information you would like alongside your test? </label>
+                    <div className = "form-group"> 
+                        <input type="text" name="testDescription" className="form-control" required/> 
+                    </div>
+                    <div className = "questionss">
                     <label htmlFor="Question">Question 1</label>
-                    <input type="text" name="QC1" className="question-content" required/> <br/>
+                    <div className="form-group"> 
+                      <input type="text" name="QC1" className="form-control" required/> <br/>
+                    </div>
+                  
                     <label>Please enter the correct answer</label>
-                    <input type="text" name="A1a" className="answer" placeholder="Answer..." required/> <br/>
-                    <label>Please enter your incorrect answers</label> <br/>
-                    <input type="text" name="A1b" className="answer" placeholder="Answer..." required/> <br/>
-                    <input type="text" name="A1b" className="answer" placeholder="Answer..."/> <br/>
-                    <input type="text" name="A1b" className="answer" placeholder="Answer..."/> <br/>
-
-
+                    <div className="form-group"> 
+                    <input type="text" name="A1a" className="form-control" placeholder="Answer..." required/> 
+                    </div>
+                    
+                    <label>Please enter your incorrect answers</label>
+                     <div className="form-group"> 
+                    <input type="text" name="A1b" className="form-control" placeholder="Answer..." required/>
+                    </div>
+                     <div className="form-group"> 
+                    <input type="text" name="A1b" className="form-control" placeholder="Answer..."/>
+                    </div>
+                    <div className="form-group">
+                    <input type="text" name="A1b" className="form-control" placeholder="Answer..."/>
+                        </div>
+                    </div>
+                     
                     <AddQuestions Questions={Questions}/>
-
-                    <input type="submit" value="Submit"/>
+               <div id = "leButtons">
+                    <input id className = "btn btn-primary" type="submit" value="Submit"/>
+                     <button id = "addQbtn" className = "btn btn-primary" onClick={this.addQuestion}>Add a new question</button>
+                    </div>
                 </form>
-                <button onClick={this.addQuestion}>Add a new question</button>
+               
             </div>
         )
     }
