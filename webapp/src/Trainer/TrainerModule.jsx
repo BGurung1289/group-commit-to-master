@@ -1,5 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {Popover} from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/es/OverlayTrigger";
+import Button from "react-bootstrap/es/Button";
 
 export default class TrainerModule extends React.Component {
     constructor(props) {
@@ -21,7 +24,7 @@ export default class TrainerModule extends React.Component {
 
     render() {
         const {sections} = this.state;
-        let temp;
+        let pop;
         return (
             <div className="w3-content">
                 <div>
@@ -31,18 +34,36 @@ export default class TrainerModule extends React.Component {
 
                 <div>
                     <h3>Module sections</h3>
-
                     <ul>
                         {sections ? (
                             sections.map(section => (
-                                    temp = "/trainerModule/" + section.sectionId,
-                                        <li key={section.sectionId}><Link to={temp} key={section.sectionId}>
-                                            {section.sectionName}
-                                        </Link></li>
+                                        pop = (<Popover id="popover-positioned-right" title="Options">
+                                            <Link to={"/uploadVideo/"+section.sectionId}>Add Video to Cloudinary</Link>
+                                            <br/>
+                                            <Link to={"/addExam/"+section.sectionId}>View Section</Link>
+                                        </Popover>),
+                                        <li key={section.sectionId}><OverlayTrigger rootClose trigger="click"
+                                                                                  placement="right"
+                                                                                  key={section.sectionId} overlay={pop}>
+                                            <Button>{section.sectionName}</Button>
+                                        </OverlayTrigger></li>
                                 )
                             )
-                        ) : <h4>No modules to display</h4>}
+                        ) : <h4>No Sections to display</h4>}
                     </ul>
+
+
+                    {/*<ul>*/}
+                        {/*{sections ? (*/}
+                            {/*sections.map(section => (*/}
+                                    {/*temp = "/trainerModule/" + section.sectionId,*/}
+                                        {/*<li key={section.sectionId}><Link to={temp} key={section.sectionId}>*/}
+                                            {/*{section.sectionName}*/}
+                                        {/*</Link></li>*/}
+                                {/*)*/}
+                            {/*)*/}
+                        {/*) : <h4>No modules to display</h4>}*/}
+                    {/*</ul>*/}
                 </div>
             </div>
         )

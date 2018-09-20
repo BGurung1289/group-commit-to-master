@@ -56,10 +56,7 @@ export default class AddSection extends React.Component {
                     <textarea required name="sectionContent" size="20" cols="40" type="text"
                               placeholder="Enter section content"/>
                     <br/>
-                    <label>Upload video</label>
-                    <input type="file"/>
-                    <br/>
-                    <label>Video Title</label>
+                    <label>Youtube Video Title</label>
                     <input type="text" name="youtubetitle" placeholder="Enter Youtube video title"/>
                     <br/>
                     <label>Youtube link</label>
