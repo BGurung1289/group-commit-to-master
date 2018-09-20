@@ -20,8 +20,8 @@ export default class DisplayVideo extends React.Component {
                     <h4>{this.state.name}</h4>
                 </div>
                 <div className="video_display">
-                    <Video cloudName="qacloudinary" publicId={this.state.id} controls={true}>
-                        <Transformation height="200" width="350" crop="scale"/>
+                    <Video cloudName="qacloudinary" publicId={this.state.id} height="300" width="450" controls={true}>
+                        {/*<Transformation height="200" width="350" crop="scale"/>*/}
                     </Video>
                 </div>
             </div>
