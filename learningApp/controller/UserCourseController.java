@@ -31,10 +31,10 @@ public class UserCourseController {
 	
 	@Autowired
 	private CourseRepository courseRepo;
-		
+
 	@GetMapping("/{userId}/getCourses")
-	public String getAllCoursesByUserId(@PathVariable(value = "userId") Long userId) {		
-		
+	public String getAllCoursesByUserId(@PathVariable(value = "userId") Long userId) {
+		System.out.println("User called");
 		ArrayList<Long> courseIds = new ArrayList();	
 		ArrayList<JSONObject> courseInfo = new ArrayList();
 		

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import qa.seanqagroup.learningApp.exceptions.ResourceNotFoundException;
@@ -14,6 +15,8 @@ import qa.seanqagroup.learningApp.repository.AnswerRepo;
 import qa.seanqagroup.learningApp.repository.ModuleExamRepo;
 import qa.seanqagroup.learningApp.repository.TestQuestionRepository;
 
+import java.util.ArrayList;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ModuleExamController {
@@ -22,10 +25,51 @@ public class ModuleExamController {
 	ModuleExamRepo testRepo;
 
 	@Autowired
-	TestQuestionRepository testQRepo;
+	TestQuestionRepository questionRepo;
 
 	@Autowired
 	AnswerRepo answerRepo;
+	
+	@GetMapping("/module/{moduleId}/getModuleTest")
+	public Long getTestByModule(@PathVariable(value = "moduleId") Long moduleId) {
+		
+		ModuleExam test = testRepo.findTestByModuleId(moduleId);
+		
+		return test.getTestId();
+	}
+	
+	@GetMapping("/test/{testId}/getQuestions")
+	public String getAllQuestionsByTestId(@PathVariable(value = "testId") Long testId) {
+		
+		ArrayList<Long> questionIds = new ArrayList();
+		ArrayList<JSONObject> questions = new ArrayList();
+		
+		for (TestQuestionModel question : questionRepo.findAll()) {
+			if(question.getTestId() == testId) 
+				questionIds.add(question.getTestQuestionId());
+		}
+		
+		for (Long questionId : questionIds) {
+			JSONObject question = new JSONObject();
+			TestQuestionModel q = questionRepo.findById(questionId).orElse(null);
+			question.put("question", q.getQuestionContent());
+
+			ArrayList<JSONObject> answers = new ArrayList();			
+			for (Answer answer : answerRepo.findAll()) {
+				JSONObject answerInfo = new JSONObject();
+				if (answer.getTestQuestionId() == questionId) {
+					answerInfo.put("answer", answer.getAnswerContent());
+					answerInfo.put("id", answer.getAnswerId());
+					answerInfo.put("correct", answer.isCorrect());
+					answers.add(answerInfo);
+				}
+			}
+			question.put("answers", answers);							
+			questions.add(question);
+		}
+		
+		return questions.toString();
+	}
 
 	@PostMapping("/newtest")
 	public ModuleExam createTest(ModuleExam test) {
@@ -65,7 +109,7 @@ public class ModuleExamController {
 				else if (category.indexOf("QC") != -1) {
 					questions.setQuestionContent(testNameObj.get("value").toString().replaceAll("\"", ""));
 					questions.setTestId(exam.getTestId());
-					testQRepo.save(questions);
+					questionRepo.save(questions);
 					currentQuestion = questions.getTestQuestionId();
 				} else if (category.endsWith("a")) {
 					answers.setAnswerContent(testNameObj.get("value").toString().replaceAll("\"", ""));
