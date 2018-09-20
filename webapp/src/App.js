@@ -23,19 +23,6 @@ import ViewSection from "./Trainer/ViewSection";
 import AddYoutube from "./Course/AddYoutube";
 
 class App extends Component {
-    state = {
-        courses: ''
-    };
-
-    async componentDidMount(){
-        console.log("MOUNTED")
-        this.courseValues = await fetch("http://localhost:8080/course/searchCourse")
-            .then(function (response) {
-                return response.json()
-            });
-
-        this.setState({courses: this.courseValues})
-    }
 
     render() {
         return (
