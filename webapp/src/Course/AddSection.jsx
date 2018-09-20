@@ -35,6 +35,8 @@ export default class AddSection extends React.Component {
             youtubeForm.append("videoName", youtubeTitle);
             youtubeForm.append("isYoutube", 1);
             youtubeForm.append("trainerId", "1");
+            youtubeForm.append("thisIsYoutube", "1");
+
 
             fetch("http://localhost:8080/section/youtube", {
                 method: 'POST',

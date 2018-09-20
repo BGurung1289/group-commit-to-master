@@ -25,17 +25,20 @@ export default class DisplayYtVideo extends React.Component {
             yturl = yturl + arr[0];
         }
         this.state.url = yturl;
-    }
+    };
 
     render() {
         this.bosh();
         return (
             <div>
+                <br/>
+                <div id="video_name">
+                    <hr>
+                    </hr>
+                    <h4>{this.state.name}</h4>
+                </div>
                 <div id="video_display">
                     <iframe src={this.state.url} width="350px" height="200px"> </iframe>
-                </div>
-                <div id="video_name">
-                    <h1>{this.state.name}</h1>
                 </div>
             </div>
         )

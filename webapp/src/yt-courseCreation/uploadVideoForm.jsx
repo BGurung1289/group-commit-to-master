@@ -10,9 +10,10 @@ export default class UploadVideoForm extends React.Component {
     }
 
     uploadVideo = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         const {sectionId} = this.state;
         console.log(event.target.video_file.value.split('.')[1]);
+        let videoName = event.target.video_name.value;
         if (event.target.video_file.value.split('.')[1] === 'mp4' || event.target.video_file.value.split('.')[1] === 'mov' || event.target.video_file.value.split('.')[1] === 'avi') {
             let url = `https://api.cloudinary.com/v1_1/qacloudinary/upload`;
             let xhr = new XMLHttpRequest();
@@ -23,24 +24,24 @@ export default class UploadVideoForm extends React.Component {
             fd.append('upload_preset', 'oqetlguy');
             fd.append('file', event.target.video_file.files[0]);
             xhr.send(fd);
-            const videoInfo = new FormData();
-            let beginignFileName = event.target.video_file.value.split('.')[0];
-            let startIndex = (beginignFileName.indexOf('\\') >= 0 ?
-                beginignFileName.lastIndexOf('\\') :
-                beginignFileName.indexOf('/'));
-            let filename = beginignFileName.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
-            }
-            videoInfo.append('videoName', event.target.video_name.value);
-            videoInfo.append('videoUrl', filename);
-            videoInfo.append('isYoutube', 0);
-            videoInfo.append('trainerId', '1');
-            videoInfo.append('sectionid', sectionId);
-            fetch('http://localhost:8080/section/youtube', {
-                method: 'POST',
-                body: videoInfo
-            });
+            xhr.onload = function (value) {
+                let videourl = JSON.parse(value.currentTarget.response).url;
+                console.log(videourl)
+                const videoInfo = new FormData();
+                videoInfo.append('videoName', videoName);
+                videoInfo.append('videoUrl', videourl);
+                videoInfo.append('isYoutube', 0);
+                videoInfo.append('trainerId', '1');
+                videoInfo.append('sectionid', sectionId);
+                videoInfo.append("thisIsYoutube", "0");
+
+                fetch('http://localhost:8080/section/youtube', {
+                    method: 'POST',
+                    body: videoInfo
+                }).then(function () {
+                    document.location.href = '/trainerPage';
+                });
+            };
         }
         else {
             document.getElementById("alert_not_video").innerHTML = "Only mp4, avi or mov files allowed";

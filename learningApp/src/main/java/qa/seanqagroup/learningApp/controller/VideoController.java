@@ -1,21 +1,20 @@
 package qa.seanqagroup.learningApp.controller;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import qa.seanqagroup.learningApp.model.SectionHasVideo;
 import qa.seanqagroup.learningApp.model.Video;
 import qa.seanqagroup.learningApp.repository.SectionHasVideoRepository;
-import qa.seanqagroup.learningApp.repository.VideoRepository;;
+import qa.seanqagroup.learningApp.repository.VideoRepository;
+
+import java.util.ArrayList;
+
+;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
