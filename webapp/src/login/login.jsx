@@ -22,7 +22,7 @@ class Login extends Component {
                     document.getElementById("result").innerHTML = "Welcome " + myJson.name;
 
                     //change below address for redirecting
-                    document.location.href = 'http://localhost:3000/LandingPage';
+                    document.location.href = 'http://localhost:3000/courses';
                 } else{
                     document.getElementById("result").innerHTML = "Email does not exist";
                 }
@@ -33,17 +33,19 @@ class Login extends Component {
            <div className ="form-container">
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <div id = "form">
-                    <input type="email" placeholder="Email" name="email" required /> 
-                        <br/>
-                    <input type="password" placeholder="Password" name="password" />
-                    <div id="result"></div>
+                    <div className = "form-group">
+                    <input type="email" className="form-control" placeholder="Email" name="email" required /> 
                         </div>
-                    <div>
-                    <input type="submit" value="Login" />
-                        <Link to='/register'>Looking to register? </Link>
+                      <div className = "form-group"> 
+                          <input type="password" className="form-control" placeholder="Password" name="password" />
                     </div>
-                    
+                    <div id="result"></div>
+                    <div>
+                    <input id = "login-btn" className = "btn btn-primary" type="submit" value="Login" />
+                    </div>
+                    <div className = "theLink "> 
+                     <Link to='/register'>Looking to register? </Link>
+                        </div>
                 </form>
             </div>      
         );

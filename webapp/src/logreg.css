@@ -1,16 +1,14 @@
 #login-form{
-    background-color: aqua;
+  
 }
 form {
-    border-style: groove;
+
     text-align: center;
     width: 50%;
     padding-top: 20px;
     padding-bottom: 20px;
     margin: auto;
-    border:1px solid #ccc;
-    box-sizing: border-box;
-    opacity: 0.8;
+  opacity: 0.95;
 }
 
 h3 {
@@ -27,14 +25,20 @@ h3 {
 }
 
 .form-container {
-    padding-top: 10%;
+    padding-top: 5%;
     
+
 }
 
-h1 {
+#login-btn, #register-btn {
+    width: 100%
+}
 
+.theLink {
+padding-top: 5px;
 }
 
 a {
    
 }
+

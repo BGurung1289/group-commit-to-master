@@ -3,8 +3,16 @@ h1 {
    
 }
 
+header {
+    text-align: center;
+    padding-top: 10%;
+    font-size: 850%;
+      
+}
+
 container {
     color: black;
+    width: auto;
 }
 
 body {
@@ -14,4 +22,18 @@ body {
 
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom:0;
+    width:100%;
+    background-color:antiquewhite;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.Navbar {
+    background color:red;
 }

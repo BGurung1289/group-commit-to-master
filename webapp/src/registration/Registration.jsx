@@ -21,7 +21,7 @@ export default class Registration extends React.Component{
                     } else if(myJson.result === "successful"){
                         alert("successful register");
                         //change below address for redirecting
-                        document.location.href = 'http://localhost:3000/LandingPage';
+                        document.location.href = 'http://localhost:3000/courses';
                     }
                 });
     }
@@ -30,16 +30,30 @@ export default class Registration extends React.Component{
 
             <div className = "form-container">
                 <h1>Time to Register</h1>
-                <div className="register_form">
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" required placeholder="Email" /><br/>
-                        <input type="text" required placeholder="First Name" /><br/>
-                        <input type="text" required placeholder="Last Name" /><br/>
-                        <input type="password" required placeholder="Password" /><br />
-                        <input className= "reg-button" type="submit" value="Submit" /> <Link to='/login'> Looking to login? </Link>
+                        <div className = "form-group"> 
+                            <input className="form-control" type="text" required placeholder="Email" />
+                        </div>
+                        
+                        <div className = "form-group">
+                         <input className="form-control" type="text" required placeholder="First Name" />
+                        </div>
+                        
+                        <div className = "form-group">
+                         <input className="form-control" type="text" required placeholder="Last Name" />
+                        </div>
+                        
+                       <div className = "form-group">
+                         <input className="form-control" type="password" required placeholder="Password" />
+                        </div>
+                        
+                        <input  id = "register-btn" className = "btn btn-primary" type="submit" value="Submit" /> 
+                        <div className = "theLink"> 
+                        <Link to='/login'> Looking to login? </Link>
+                        </div>
                     </form>
+                
                 </div>
-            </div>
         )
     }
 }
