@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/video.css";
+
 export default class UploadVideoForm extends React.Component {
     uploadVideo = (event) => {
         event.preventDefault();
@@ -36,18 +37,19 @@ export default class UploadVideoForm extends React.Component {
             document.getElementById("alert_not_video").innerHTML = "Only mp4, avi or mov files allowed";
         }
     }
-
     render() {
         return (
             <div className="video upload form" id="regForm">
                 <form onSubmit={this.uploadVideo}>
                     <div className="form-group">
-                        <input className="form-control" name="video_file" type="file" accept="video/*"/><br/>
+                           <input type="file" accept="video/*" className="form-control-file" name="video_file" /><br/>
                     </div>
                     <div className="form-group">
-                        <input className="form-control-file" name="video_name" type="text" placeholder="Video name"/><br/>
+                        <input className="form-control" name="video_name" type="text" placeholder="Video name..."/><br/>
                     </div>
-                    <input type="submit" value="Upload"/>
+                    <div className="button-container">
+                        <input className="btn btn-primary" type="submit" value="Upload"/>
+                    </div>
                 </form>
                 <div id="alert_not_video">
                 </div>

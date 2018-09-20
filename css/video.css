@@ -1,0 +1,10 @@
+#regForm{
+    position: center;
+    width: 40%;
+}
+input[type=submit]{
+   width: 100%
+}
+.button-container{
+    padding-bottom:10px;
+}
