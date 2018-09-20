@@ -20,7 +20,7 @@ export default class LearnerDisplayHomepage extends React.Component {
     let userCourses;
     try {
       const learnerUrl = `http://localhost:8080/user/${this.state.user}/getCourses`;
-      let learnerResponse = await fetch(learnerUrl);
+      let learnerResponse = await fetch(learnerUrl, {mode: "cors"});
       let learnerResponseJSON = await learnerResponse.json();
       userCourses = await learnerResponseJSON;
     }
