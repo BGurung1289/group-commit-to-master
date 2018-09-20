@@ -48,7 +48,6 @@ public class SectionController {
 	public void addYoutube(Video video, @RequestParam("sectionid") long sectionid) {
 		SectionHasVideo sectionHasVideo = new SectionHasVideo();
 
-		video.setYoutube(true);
 		videoRepository.save(video);
 
 		long videoid = videoRepository.findAll().get(videoRepository.findAll().size() - 1).getVideoId();
