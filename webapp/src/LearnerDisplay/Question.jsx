@@ -24,7 +24,7 @@ export default class Question extends React.Component {
       answers = await answersResponseJSON.counter;
     }
     catch(e) {
-      console.log("No test found!");
+      console.log("No test founddd!");
     }
   }
 
